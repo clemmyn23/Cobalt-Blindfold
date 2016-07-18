@@ -22,8 +22,9 @@ class Bopae:
 
     @commands.command()
     async def bopae(self, *text):
-        """... because google sheets takes too long to load ;_;
-        Usage: !bopae list\n       !bopae [name]\n       !bopae [name] [1-8]"""
+        """... because g-sheets take forever to load\n
+        Usage:\n !bopae list\n !bopae [name]\n !bopae [name] [1-8]\n 
+        """
         
         if text == () or len(text) > 2:
             # await self.bot.say("Usage: !bopae [setAbbrev] [slotPos (1-8) (optional)]")
