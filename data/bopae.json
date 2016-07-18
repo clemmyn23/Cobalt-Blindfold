@@ -1,7 +1,7 @@
 {
     "bsh": {
         "setName": "Bloodshade Harbor",
-        "setNotes": "Hae Mujin is kawaii",
+        "setNotes": "purple balls are expensive now?",
         "setBonus": {
             "3": {
                 "ACC": 70
@@ -14,7 +14,6 @@
                 "BLK": 127
             }
         },
-        
         "slot1": {
             "HP1": [1700, 2060, 2420],
             "fusionmax": 114,
@@ -81,38 +80,84 @@
         }
     },
     "beido": {
-        "setName": "Sundered Nexus TODO",
+        "setName": "Sundered Nexus",
         "setNotes": "expensive robots",
-        "setBonus": {},
-        "slot1": {},
-        "slot2": {},
-        "slot3": {},
-        "slot4": {},
-        "slot5": {},
-        "slot6": {},
-        "slot7": {},
-        "slot8": {}
-    },
-    "yeti": {
-        "setName": "Avalanche Den TODO",
-        "setNotes": "save meeee senpai!~~",
-        "setBonus": {},
-        "slot1": {},
-        "slot2": {},
-        "slot3": {},
-        "slot4": {},
-        "slot5": {},
-        "slot6": {},
-        "slot7": {},
-        "slot8": {}
-    },
-    "asura": {
-        "setName": "Sogun's Lament TODO",
-        "setNotes": "ice ice ice ice ice!",
         "setBonus": {
             "3": {
-                "AP": 5
+                "ACC": 96,
+                "PEN": 265
             }
+        },
+        "slot1": {
+            "HP1": [2320, 2820, 3320],
+            "fusionmax": 157,
+            "stat1": "ACC",
+            "data1": [175, 208, 240],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [84, 103] 
+        },
+        "slot2": {
+            "HP1": [4280, 5140, 6010],
+            "fusionmax": 164,
+            "stat1": "HP1",
+            "data1": [4280, 5140, 6010],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [88, 108]
+        },
+        "slot3": {
+            "HP1": [2550, 3090, 3640],
+            "fusionmax": 172,
+            "stat1": "BLK",
+            "data1": [192, 228, 265],
+            "stat2": ["cRate", "ACC", "EVA"],
+            "data2": [91, 112]
+        },
+        "slot4": {
+            "HP1": [2660, 3230, 3800],
+            "fusionmax": 179,
+            "stat1": "EVA",
+            "data1": [200, 238, 276],
+            "stat2": ["cRate", "ACC", "BLK"],
+            "data2": [96, 118]
+        },
+        "slot5": {
+            "HP1": [2880, 3500, 4110],
+            "fusionmax": 194,
+            "stat1": "cRate",
+            "data1": [216, 257, 298],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [104, 128]
+        },
+        "slot6": {
+            "HP1": [2990, 3630, 4270],
+            "fusionmax": 201,
+            "stat1": "HP1",
+            "data1": [225, 267, 310],
+            "stat2": ["cRate", "DEF", "EVA"],
+            "data2": [108, 132]
+        },
+        "slot7": {
+            "HP1": [3100, 3760, 4430],
+            "fusionmax": 209,
+            "stat1": "cRate",
+            "data1": [233, 277, 321],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [112, 137]
+        },
+        "slot8": {
+            "HP1": [3210, 3900, 4590],
+            "fusionmax": 216,
+            "stat1": "cRate",
+            "data1": [242, 287, 333],
+            "stat2": ["ACC", "HP2", "DEF"],
+            "data2": [116, 142, 1160, 1420]
+        }
+    },
+    "yeti": {
+        "setName": "Avalanche Den *TODO*",
+        "setNotes": "save meeee senpai!~~",
+        "setBonus": {
+            "3": {}
         },
         "slot1": {
             "HP1": [0, 0, 0],
@@ -122,12 +167,141 @@
             "stat2": [0],
             "data2": [0]
         },
-        "slot2": {},
-        "slot3": {},
-        "slot4": {},
-        "slot5": {},
-        "slot6": {},
-        "slot7": {},
-        "slot8": {}
+        "slot2": {
+            "HP1": [0, 0, 0],
+            "fusionmax": 0,
+            "stat1": "HP1",
+            "data1": [0],
+            "stat2": [0],
+            "data2": [0]
+        },
+        "slot3": {
+            "HP1": [0, 0, 0],
+            "fusionmax": 0,
+            "stat1": "HP1",
+            "data1": [0],
+            "stat2": [0],
+            "data2": [0]
+        },
+        "slot4": {
+            "HP1": [0, 0, 0],
+            "fusionmax": 0,
+            "stat1": "HP1",
+            "data1": [0],
+            "stat2": [0],
+            "data2": [0]
+        },
+        "slot5": {
+            "HP1": [0, 0, 0],
+            "fusionmax": 0,
+            "stat1": "HP1",
+            "data1": [0],
+            "stat2": [0],
+            "data2": [0]
+        },
+        "slot6": {
+            "HP1": [0, 0, 0],
+            "fusionmax": 0,
+            "stat1": "HP1",
+            "data1": [0],
+            "stat2": [0],
+            "data2": [0]
+        },
+        "slot7": {
+            "HP1": [0, 0, 0],
+            "fusionmax": 0,
+            "stat1": "HP1",
+            "data1": [0],
+            "stat2": [0],
+            "data2": [0]
+        },
+        "slot8": {
+            "HP1": [0, 0, 0],
+            "fusionmax": 0,
+            "stat1": "HP1",
+            "data1": [0],
+            "stat2": [0],
+            "data2": [0]
+        }
+    },
+    "asura": {
+        "setName": "Sogun's Lament",
+        "setNotes": "ice ice ice ice ice!",
+        "setBonus": {
+            "3": {
+                "AP": 5
+            },
+            "5": {
+                "cDmg": 7
+            },
+            "7": {
+                "PEN": 200,
+                "HP1": 1800
+            }
+        },
+        "slot1": {
+            "HP1": [2420, 2940, 3460],
+            "fusionmax": 169,
+            "stat1": "ACC",
+            "data1": [174, 211, 249],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [80, 101]
+        },
+        "slot2": {
+            "HP1": [2540, 3080, 3630],
+            "fusionmax": 178,
+            "stat1": "ACC",
+            "data1": [174, 211, 249],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [84, 106]
+        },
+        "slot3": {
+            "HP1": [2650, 3220, 3790],
+            "fusionmax": 186,
+            "stat1": "EVA",
+            "data1": [182, 221, 260],
+            "stat2": ["ACC", "HP2", "BLK"],
+            "data2": [88, 111]
+        },
+        "slot4": {
+            "HP1": [2770, 3360, 3950],
+            "fusionmax": 194,
+            "stat1": "DEF",
+            "data1": [189, 230, 271],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [100, 125]
+        },
+        "slot5": {
+            "HP1": [3000, 3620, 4280],
+            "fusionmax": 210,
+            "stat1": "EVA",
+            "data1": [205, 249, 294],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [100, 125]
+        },
+        "slot6": {
+            "HP1": [5240, 6370, 7500],
+            "fusionmax": 218,
+            "stat1": "HP1",
+            "data1": [5240, 6370, 7500],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [104, 130]
+        },
+        "slot7": {
+            "HP1": [3230, 3920, 4610],
+            "fusionmax": 226,
+            "stat1": "BLK",
+            "data1": [221, 268, 316],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [108, 135]
+        },
+        "slot8": {
+            "HP1": [3350, 4060, 4780],
+            "fusionmax": 234,
+            "stat1": "cRate",
+            "data1": [229, 278, 328],
+            "stat2": ["ACC", "HP2", "DEF"],
+            "data2": [112, 140, 1120, 1400]
+        }
     }
 }
