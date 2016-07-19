@@ -8,6 +8,9 @@ try:
 except:
     isSoupAvail = False
 import aiohttp
+import asyncio
+from urllib.parse import quote
+
 
 
 class Bopae:
@@ -49,18 +52,21 @@ class Bopae:
         ("BNS soul shield utils\n"
         "Usage: !bopae list\n"
         "       !bopae [name]\n"
-        "       !bopae [name] [1-8]")
+        "       !bopae [name] [1-8]\n"
+        "       !bopae user [username]")
 
 
-        if text == () or len(text) > 2:
+        if text == ():
             await self.bot.say("```"
-                               "Usage: !bopae list\n"
-                               "       !bopae [name]\n"
-                               "       !bopae [name] [1-8]```")
+                           "Usage: !bopae list\n"
+                           "       !bopae [name]\n"
+                           "       !bopae [name] [1-8]\n"
+                           "       !bopae user [username]```")
 
-        if text[0] == "list":
+        elif text[0] == "list":
             multiline = "Available SS sets: " + ", ".join(map(str, self.bopaeData))
             await self.bot.say(multiline)
+
 
         elif text[0] == "search":
             if len(text) != 2:
@@ -68,41 +74,36 @@ class Bopae:
                 return
             await self.bot.say("DEBUG: bopae search result: " + self.bopae_search(text[1]))
 
+
         elif text[0] == "user":
-            await self.bot.say("feature unimplemented")
-
             name = " ".join(map(str, text[1::]))
-            await self.bot.say("requested name [{}]".format(name))
+            url = "http://na-bns.ncsoft.com/ingame/bs/character/profile?c="+quote(name, safe='')
 
-            url = "http://na-bns.ncsoft.com/ingame/bs/character/profile?c="+name+"&s=101"
-            await self.bot.say("url: "+url)
+            async with aiohttp.get(url) as resp:
+                if resp.status != 200:
+                    multiline = "```url: {}\n".format(url)
+                    multiline += "BNS server potato (http resp status {})```".format(resp.status)
+                    await self.bot.say(multiline)
+                    return
+                soup = BeautifulSoup(await resp.text(), 'html.parser')
 
-            async with aiohttp.get(url) as response:
-                wall = response.status
-                await self.bot.say("http response: "+str(wall))
-                soupObject = BeautifulSoup(await response.text(), 'html.parser')
-
-            # try:
-            # data = soupObject.find_all(class_="gemIcon")
-            # print(str(soupObject))
-            # await self.bot.say("test here")
-            # await self.bot.say(stuffing)
-            # except:
-            #     await self.bot.say("parsing error")
-            #
-
-
-
-            #Your code will go here
-            # url = "https://steamdb.info/app/570/graphs/" #build the web adress
-            # async with aiohttp.get(url) as response:
-            #     soupObject = BeautifulSoup(await response.text(), "html.parser")
-            # try:
-            #     online = soupObject.find(class_='home-stats').find('li').find('strong').get_text()
-            #     await self.bot.say(online + ' players are playing this game at the moment')
-            # except:
-            #     await self.bot.say("Couldn't load amount of players. No one is playing this game anymore or there's an error.")
-
+            try:
+                wall = soup.body.find(id="container").find(id="contents")
+                wall = wall.find(class_="characterInfo").find(class_="itemArea")
+                wall = wall.find(class_="wrapGem").find(class_="gemIcon").find("map")
+                multiline = "```Requested name [{}]\n".format(name)
+                multiline += "url: {}\n".format(url)
+                slot = 1
+                for piece in wall.find_all("area"):
+                    try:
+                        multiline += "slot #{}: {}, \titem-ID {}\n".format(slot, piece["alt"], piece["item-data"])
+                    except:
+                        multiline += "slot #{}: empty\n".format(slot)
+                    slot += 1
+                multiline += "```"
+                await self.bot.say(multiline)
+            except:
+                await self.bot.say("Unable to find [{}]".format(name))
 
 
         elif len(text) == 1:
@@ -129,6 +130,7 @@ class Bopae:
 
             multiline += "```"
             await self.bot.say(multiline)
+
 
         elif len(text) == 2:
             """specific bopae stat"""
