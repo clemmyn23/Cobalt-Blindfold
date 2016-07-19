@@ -1,12 +1,9 @@
 # Cobolt-Blindfold
-"Easier" to use soulshields data for blade and soul game
+Soulshields data and utilities for blade and soul game
 
 Credits:
-[chibi_prae](https://twitter.com/chibi_prae) for bopae data [cheatsheet](https://docs.google.com/spreadsheets/d/1JOQK34BUTR_55XwnbJOk388gjokrtLZFdhi3vIwXjZc)
+[chibi_prae](https://twitter.com/chibi_prae) for [bopae cheatsheet](https://docs.google.com/spreadsheets/d/1JOQK34BUTR_55XwnbJOk388gjokrtLZFdhi3vIwXjZc)
 
 TODO:
 - data entry
-- better name search for cog
-- comparator
-- user search + best in slot analysis
 - easter eggs
