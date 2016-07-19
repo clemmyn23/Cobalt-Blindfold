@@ -157,8 +157,89 @@
 	},
 	"yeti": {
 		"tags": ["snow"],
-		"setName": "Avalanche Den *TODO*",
+		"setName": "Avalanche Den",
 		"setNotes": "save meeee senpai!~~",
+		"setBonus": {
+			"3": {
+				"PEN": 89
+			},
+			"5": {
+				"EVA": 268
+			},
+			"7": {
+				"cRate": 161,
+				"PEN": 376
+			}
+		},
+		"slot1": {
+			"HP1": [2320, 2820, 3320],
+			"fusionmax": 157,
+			"stat1": "ACC",
+			"data1": [153, 186, 219],
+			"stat2": ["cRate", "EVA", "BLK"],
+			"data2": [75, 94]
+		},
+		"slot2": {
+			"HP1": [4050, 4910, 5780],
+			"fusionmax": 164,
+			"stat1": "HP1",
+			"data1": [4050, 4910, 5780],
+			"stat2": ["cRate", "ACC", "DEF"],
+			"data2": [78, 98]
+		},
+		"slot3": {
+			"HP1": [2550, 3090, 5780],
+			"fusionmax": 172,
+			"stat1": "BLK",
+			"data1": [168, 204, 241],
+			"stat2": ["cRate", "ACC", "EVA"],
+			"data2": [81, 102]
+		},
+		"slot4": {
+			"HP1": [2600, 3230, 3800],
+			"fusionmax": 179,
+			"stat1": "EVA",
+			"data1": [175, 213, 251],
+			"stat2": ["cRate", "ACC", "BLK"],
+			"data2": [85, 107]
+		},
+		"slot5": {
+			"HP1": [2880, 3500, 4110],
+			"fusionmax": 194,
+			"stat1": "cRate",
+			"data1": [189, 230, 271],
+			"stat2": ["ACC", "DEF", "EVA"],
+			"data2": [92, 116]
+		},
+		"slot6": {
+			"HP1": [2990, 3630, 4270],
+			"fusionmax": 201,
+			"stat1": "ACC",
+			"data1": [197, 239, 282],
+			"stat2": ["cRate", "DEF", "EVA"],
+			"data2": [96, 120]
+		},
+		"slot7": {
+			"HP1": [3100, 3760, 4430],
+			"fusionmax": 209,
+			"stat1": "cRate",
+			"data1": [204, 248, 292],
+			"stat2": ["ACC", "DEF", "BLK"],
+			"data2": [100, 125]
+		},
+		"slot8": {
+			"HP1": [3210, 3900, 4590],
+			"fusionmax": 216,
+			"stat1": "cRate",
+			"data1": [212, 259, 303],
+			"stat2": ["ACC", "HP2", "DEF"],
+			"data2": [103, 129, 1030, 1290]
+		}
+	},
+	"corrupted_TODO": {
+		"tags": ["corrupted"],
+		"setName": "corrupted *future content* *TODO*",
+		"setNotes": "Comes from various zones: Corrupted Black Spear Tribe / Ruined City / Battle of the Black Marsh / Silent Pirate Ship",
 		"setBonus": {
 			"3": {}
 		},
@@ -227,10 +308,9 @@
 			"data2": [0]
 		}
 	},
-
-	"naksun": {
-		"tags": ["yukson"],
-		"setName": "Tower F12-15",
+	"forgotten_TODO": {
+		"tags": ["forgotten"],
+		"setName": "forgotten *future content* *TODO*",
 		"setNotes": ".",
 		"setBonus": {
 			"3": {}
@@ -300,10 +380,78 @@
 			"data2": [0]
 		}
 	},
-
-
-
-
+	"naksun_TODO": {
+		"tags": ["yukson"],
+		"setName": "Tower F12-15 *TODO*",
+		"setNotes": ".",
+		"setBonus": {
+			"3": {}
+		},
+		"slot1": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot2": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot3": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot4": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot5": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot6": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot7": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot8": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		}
+	},
 	"asura": {
 		"tags": ["sogun", "sura"],
 		"setName": "Sogun's Lament",
