@@ -11,7 +11,7 @@ from cogs.utils.dataIO import dataIO
 
 
 class Bopae:
-    """Some silly blade and soul commands for idk reasons"""
+    """BNS soul shield utils"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -46,9 +46,11 @@ class Bopae:
 
     @commands.command()
     async def bopae(self, *text):
-        """... because g-sheets take forever to load\n
-        Usage:\n !bopae list\n !bopae [name]\n !bopae [name] [1-8]\n
-        """
+        ("BNS soul shield utils\n"
+        "Usage: !bopae list\n"
+        "       !bopae [name]\n"
+        "       !bopae [name] [1-8]")
+
 
         if text == () or len(text) > 2:
             await self.bot.say("```"
@@ -66,6 +68,9 @@ class Bopae:
                 return
             await self.bot.say("DEBUG: bopae search result: " + self.bopae_search(text[1]))
 
+        elif text[0] == "user":
+            await self.bot.say("feature unimplemented")
+
         elif len(text) == 1:
             """bopae set stats"""
 
@@ -75,7 +80,7 @@ class Bopae:
 
             query = self.bopae_search(text[0])
             if query == "":
-                await self.bot.say("Unable to find requested set [{{}}]".format(text[0]))
+                await self.bot.say("Unable to find requested set [{}]".format(text[0]))
                 return
 
             reqBopae = self.bopaeData[query]
@@ -101,7 +106,7 @@ class Bopae:
 
             query = self.bopae_search(text[0])
             if query == "":
-                await self.bot.say("Unable to find requested set [{{}}]".format(text[0]))
+                await self.bot.say("Unable to find requested set [{}]".format(text[0]))
                 return
 
             try:
