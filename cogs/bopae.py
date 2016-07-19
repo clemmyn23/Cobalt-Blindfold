@@ -2,12 +2,12 @@ import discord
 import re
 from discord.ext import commands
 from cogs.utils.dataIO import dataIO
-# try:
-    # from bs4 import BeautifulSoup
-    # isSoupAvail = True
-# except:
-    # isSoupAvail = False
-# import aiohttp
+try:
+    from bs4 import BeautifulSoup
+    isSoupAvail = True
+except:
+    isSoupAvail = False
+import aiohttp
 
 
 class Bopae:
@@ -71,6 +71,40 @@ class Bopae:
         elif text[0] == "user":
             await self.bot.say("feature unimplemented")
 
+            name = " ".join(map(str, text[1::]))
+            await self.bot.say("requested name [{}]".format(name))
+
+            url = "http://na-bns.ncsoft.com/ingame/bs/character/profile?c="+name+"&s=101"
+            await self.bot.say("url: "+url)
+
+            async with aiohttp.get(url) as response:
+                wall = response.status
+                await self.bot.say("http response: "+str(wall))
+                soupObject = BeautifulSoup(await response.text(), 'html.parser')
+
+            # try:
+            # data = soupObject.find_all(class_="gemIcon")
+            # print(str(soupObject))
+            # await self.bot.say("test here")
+            # await self.bot.say(stuffing)
+            # except:
+            #     await self.bot.say("parsing error")
+            #
+
+
+
+            #Your code will go here
+            # url = "https://steamdb.info/app/570/graphs/" #build the web adress
+            # async with aiohttp.get(url) as response:
+            #     soupObject = BeautifulSoup(await response.text(), "html.parser")
+            # try:
+            #     online = soupObject.find(class_='home-stats').find('li').find('strong').get_text()
+            #     await self.bot.say(online + ' players are playing this game at the moment')
+            # except:
+            #     await self.bot.say("Couldn't load amount of players. No one is playing this game anymore or there's an error.")
+
+
+
         elif len(text) == 1:
             """bopae set stats"""
 
@@ -95,7 +129,6 @@ class Bopae:
 
             multiline += "```"
             await self.bot.say(multiline)
-
 
         elif len(text) == 2:
             """specific bopae stat"""
@@ -136,4 +169,7 @@ class Bopae:
 
 
 def setup(bot):
-    bot.add_cog(Bopae(bot))
+    if isSoupAvail:
+        bot.add_cog(Bopae(bot))
+    else:
+        raise RuntimeError("You need to run `pip3 install beautifulsoup4`")
