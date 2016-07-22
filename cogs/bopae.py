@@ -11,12 +11,6 @@ import aiohttp
 import asyncio
 from urllib.parse import quote
 
-# = = = = = = = = = = = = = = = = = = = =
-
-debug = True
-
-# = = = = = = = = = = = = = = = = = = = =
-
 
 
 class Bopae:
@@ -51,33 +45,36 @@ class Bopae:
         return ""
 
 
+    # def bopae_math(self):
+    #     return
+
+
     @commands.command()
     async def bopae(self, *text):
         ("BNS soul shield utils\n"
         "Usage: !bopae list\n"
         "       !bopae [name]\n"
-        "       !bopae [name] [1-8]\n"
+        "       !bopae [name] [1-8 / all]...\n"
         "       !bopae user [username]")
-
 
         if text == ():
             await self.bot.say("```"
-                           "Usage: !bopae list\n"
-                           "       !bopae [name]\n"
-                           "       !bopae [name] [1-8]\n"
-                           "       !bopae user [username]```")
+                            "Usage: !bopae list\n"
+                            "       !bopae [name]\n"
+                            "       !bopae [name] [1-8 / all]...\n"
+                            "       !bopae user [username]```")
+
 
         elif text[0] == "list":
             multiline = "Available SS sets: " + ", ".join(map(str, self.bopaeData))
             await self.bot.say(multiline)
 
 
-        elif text[0] == "search":
-            if debug:
-                if len(text) != 2:
-                    await self.bot.say("Usage: !bopae search [query]")
-                    return
-                await self.bot.say("DEBUG: bopae search result: " + self.bopae_search(text[1]))
+        # elif text[0] == "search":
+        #     if len(text) != 2:
+        #         await self.bot.say("Usage: !bopae search [query]")
+        #         return
+        #     await self.bot.say("DEBUG: bopae search result: " + self.bopae_search(text[1]))
 
 
         elif text[0] == "user":
@@ -110,6 +107,7 @@ class Bopae:
             except:
                 await self.bot.say("Unable to find [{}]".format(name))
 
+
         else :
             """specific bopae stat"""
 
@@ -133,14 +131,18 @@ class Bopae:
                 multiline += "{} set: {}\n".format(i, self.bopaeData[query]["setBonus"][i])
             multiline += "\n"
 
-            for reqSlot in text[1::]:
+            if "all" in text[1::]:
+                querySet = [1, 2, 3, 4, 5, 6, 7, 8]
+            else:
+                querySet = text[1::]
+            for reqSlot in querySet:
                 try:
-                    reqBopae = self.bopaeData[query]["slot"+reqSlot]
+                    reqBopae = self.bopaeData[query]["slot"+str(reqSlot)]
                     multiline += (
                         "Slot {}\n"
                         "HP1: {}\n"
                         "Fusion max: {}\n"
-                        "Primary stat:    {} {}\n"
+                        "Primary stat: {} {}\n"
                         "Secondary stats: {} {}\n"
                         "\n"
                         ).format(reqSlot,
