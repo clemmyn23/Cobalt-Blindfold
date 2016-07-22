@@ -11,6 +11,12 @@ import aiohttp
 import asyncio
 from urllib.parse import quote
 
+# = = = = = = = = = = = = = = = = = = = =
+
+debug = True
+
+# = = = = = = = = = = = = = = = = = = = =
+
 
 
 class Bopae:
@@ -32,7 +38,6 @@ class Bopae:
             return ""
 
         for i in self.bopaeData:
-            # print("DEBUG: matching query [{}] in tags {}".format(query, self.bopaeData[i]["tags"]))
             for tag in self.bopaeData[i]["tags"]:
                 # if tag == query:
                 #     return i
@@ -40,7 +45,6 @@ class Bopae:
                     return i
 
         for i in self.bopaeData:
-            # print("DEBUG: query: [{}], searching: [{}]".format(query, self.bopaeData[i]["setName"].lower()))
             if re.search(query, self.bopaeData[i]["setName"].lower()) != None:
                 return i
 
@@ -69,10 +73,11 @@ class Bopae:
 
 
         elif text[0] == "search":
-            if len(text) != 2:
-                await self.bot.say("Usage: !bopae search [query]")
-                return
-            await self.bot.say("DEBUG: bopae search result: " + self.bopae_search(text[1]))
+            if debug:
+                if len(text) != 2:
+                    await self.bot.say("Usage: !bopae search [query]")
+                    return
+                await self.bot.say("DEBUG: bopae search result: " + self.bopae_search(text[1]))
 
 
         elif text[0] == "user":
@@ -132,7 +137,7 @@ class Bopae:
             await self.bot.say(multiline)
 
 
-        elif len(text) == 2:
+        else :
             """specific bopae stat"""
 
             if len(text[0]) < 3:
@@ -144,28 +149,32 @@ class Bopae:
                 await self.bot.say("Unable to find requested set [{}]".format(text[0]))
                 return
 
-            try:
-                reqBopae = self.bopaeData[query]["slot"+text[1]]
-            except:
-                await self.bot.say("Invalid bopae slot requested [{}]".format(text[1]))
-                return
+            multiline = "```"
+            multiline += ("Set name: {} [{}]\n"
+                            "Notes: {}\n"
+                            "\n").format(self.bopaeData[query]["setName"],
+                            query, self.bopaeData[query]["setNotes"])
 
-            multiline = ("```"
-                "REQUESTED SOUL SHIELD PIECE [{}] slot{}\n"
-                "set name: {}\n"
-                "notes: {}\n"
-                "HP1: {}\n"
-                "fusionmax: {}\n"
-                "primary stat: {} {}\n"
-                "secondary stats: {} {}\n"
-                "```").format(query, text[1],
-                self.bopaeData[query]["setName"],
-                self.bopaeData[query]["setNotes"],
-                reqBopae["HP1"], reqBopae["fusionmax"],
-                reqBopae["stat1"], reqBopae["data1"],
-                reqBopae["stat2"], reqBopae["data2"]
-                )
+            for reqSlot in text[1::]:
+                try:
+                    reqBopae = self.bopaeData[query]["slot"+reqSlot]
+                    multiline += (
+                        "Slot {}\n"
+                        "HP1: {}\n"
+                        "Fusion max: {}\n"
+                        "Primary stat:    {} {}\n"
+                        "Secondary stats: {} {}\n"
+                        "\n"
+                        ).format(reqSlot,
+                        reqBopae["HP1"], reqBopae["fusionmax"],
+                        reqBopae["stat1"], reqBopae["data1"],
+                        reqBopae["stat2"], reqBopae["data2"]
+                        )
 
+                except:
+                    multiline += "Invalid bopae slot requested [{}]\n\n".format(reqSlot)
+
+            multiline += "```"
             await self.bot.say(multiline)
 
 
