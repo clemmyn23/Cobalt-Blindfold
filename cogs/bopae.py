@@ -110,33 +110,6 @@ class Bopae:
             except:
                 await self.bot.say("Unable to find [{}]".format(name))
 
-
-        elif len(text) == 1:
-            """bopae set stats"""
-
-            if len(text[0]) < 3:
-                await self.bot.say("Search request too short (must be at least 3 characters long)")
-                return
-
-            query = self.bopae_search(text[0])
-            if query == "":
-                await self.bot.say("Unable to find requested set [{}]".format(text[0]))
-                return
-
-            reqBopae = self.bopaeData[query]
-            multiline = ("```"
-                "REQUESTED SOUL SHIELD SET [{}]\n"
-                "set name: {}\n"
-                "set notes: {}\n"
-                ).format(query, reqBopae["setName"], reqBopae["setNotes"])
-
-            for i in reqBopae["setBonus"]:
-                multiline += "set bonus {}: {}\n".format(i, reqBopae["setBonus"][i])
-
-            multiline += "```"
-            await self.bot.say(multiline)
-
-
         else :
             """specific bopae stat"""
 
@@ -154,6 +127,11 @@ class Bopae:
                             "Notes: {}\n"
                             "\n").format(self.bopaeData[query]["setName"],
                             query, self.bopaeData[query]["setNotes"])
+
+            multiline += "Set bonus:\n"
+            for i in self.bopaeData[query]["setBonus"]:
+                multiline += "{} set: {}\n".format(i, self.bopaeData[query]["setBonus"][i])
+            multiline += "\n"
 
             for reqSlot in text[1::]:
                 try:
