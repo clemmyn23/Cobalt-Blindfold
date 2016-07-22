@@ -238,10 +238,19 @@
 	},
 	"corrupted_TODO": {
 		"tags": ["corrupted"],
-		"setName": "corrupted *future content* *TODO*",
+		"setName": "Twisted *TODO*",
 		"setNotes": "Comes from various zones: Corrupted Black Spear Tribe / Ruined City / Battle of the Black Marsh / Silent Pirate Ship",
 		"setBonus": {
-			"3": {}
+			"3": {
+				"PEN": 104
+			},
+			"5": {
+				"EVA": 314
+			},
+			"7": {
+				"cRate": 188,
+				"PEN": 440
+			}
 		},
 		"slot1": {
 			"HP1": [0, 0, 0],
@@ -497,8 +506,8 @@
 			"fusionmax": 194,
 			"stat1": "DEF",
 			"data1": [189, 230, 271],
-			"stat2": ["cRate", "DEF", "BLK"],
-			"data2": [100, 125]
+			"stat2": ["cRate", "HP2", "BLK"],
+			"data2": [92, 116, 920, 1160]
 		},
 		"slot5": {
 			"HP1": [3000, 3620, 4280],
