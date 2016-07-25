@@ -21,7 +21,8 @@ class Bopae:
         self.bopaeData = dataIO.load_json("data/bopae/bopae.json")
 
 
-    def bopae_search(self, query):
+    def bopae_namesearch(self, query):
+        """Searches the corresponding object key given query"""
         query = query.lower()
 
         if query in self.bopaeData:
@@ -31,22 +32,63 @@ class Bopae:
             # print("DEBUG: search request too short")
             return ""
 
+        query = re.compile(query)
         for i in self.bopaeData:
             for tag in self.bopaeData[i]["tags"]:
                 # if tag == query:
                 #     return i
-                if re.search(query, tag) != None:
+                if query.search(tag) != None:
                     return i
 
         for i in self.bopaeData:
-            if re.search(query, self.bopaeData[i]["setName"].lower()) != None:
+            if query.search(self.bopaeData[i]["setName"].lower()) != None:
                 return i
 
         return ""
 
 
-    # def bopae_math(self):
-    #     return
+    def bopae_math(self, mathType, *text):
+        """This does math stuff. TODO"""
+        mathType = mathType.lower()
+        for i in text:
+            try:
+                text[i] = int(i)
+            except:
+                text.remove(i)
+                # invalids.add(i)
+
+        if mathType = "sum":
+            return sum(text)
+
+        elif re.search(mathType, "^average") != None:
+            if len(text) == 0:
+                return 0        # possible div by zero
+            return sum(text)/len(text)
+
+        return 0
+
+
+    # name should be valid key
+    # slot integer in range 1..8
+    # stat should be valid stat key
+    def bopae_getdata(self, name, slot, stat):
+        """Returns integer given valid request"""
+        " AP cRate cDmg PEN aDmg Ele CCdmg ACC HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax "
+
+        try:
+            return self.bopaeData[name]["slot"+slot][stat]
+        except:
+            return 0
+
+    def bopae_statsearch(self, query):
+        name = name.lower()
+        quert = query.lower()
+        key = ""
+        if query in ["ap", "attkpwr", "attackpwr", "attkpower", "attackpower"]:
+            key = "AP"
+        elif query in ["crate", "crit", "critical", "critrate", "criticalrate"]:
+            key = "cRate"
+        return ""
 
 
     @commands.command()
@@ -74,7 +116,7 @@ class Bopae:
         #     if len(text) != 2:
         #         await self.bot.say("Usage: !bopae search [query]")
         #         return
-        #     await self.bot.say("DEBUG: bopae search result: " + self.bopae_search(text[1]))
+        #     await self.bot.say("DEBUG: bopae search result: " + self.bopae_namesearch(text[1]))
 
 
         elif text[0] == "user":
@@ -115,7 +157,7 @@ class Bopae:
                 await self.bot.say("Search request too short (must be at least 3 characters long)")
                 return
 
-            query = self.bopae_search(text[0])
+            query = self.bopae_namesearch(text[0])
             if query == "":
                 await self.bot.say("Unable to find requested set [{}]".format(text[0]))
                 return
