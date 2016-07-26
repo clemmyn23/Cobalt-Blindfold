@@ -72,37 +72,40 @@ class Bopae:
             "       !bopae search(optional) [name]\n"
             "       !bopae search(optional) [name] [1-8 / all]...\n")
 
-    async def bopae_parser(self, text):
-        await self.bot.say("bopae_parser([{}])".format(text))
-        currset = ""
-        query = {"multiline": "string here"}
+
+    # TODO better exception handling
+    def bopae_parser(self, text):
+        currset = ()
+        query = {"multiline": ""}
         for i in text:
             name = self.bopae_namesearch(i)
             if name == "":
                 if i == "all":
-                    query[currset].clear()
-                    query[currset].append([1, 2, 3, 4, 5, 6, 7, 8])
-                    # query[currset].append([1, 2, 3, 4, 5, 6, 7, 8])
+                    query[currset] = [1, 2, 3, 4, 5, 6, 7, 8]
                 else:
-                    # try:
+                    try:
                         i = int(i)
-                        tmpmultiline = "integer conversion success at [{}]\n".format(str(i))
-                        tmpmultiline += "currset [{}]\n".format(currset)
-                        # await self.bot.say(tmpmultiline)
 
-                        if name not in query:
+                        if currset == ():
+                            raise Exception('Attempted to assign soulshield slot to empty set')
+                        if i < 1 or i > 8:
+                            raise Exception('Invalid soul shield slot')
+
+                        if currset not in query:
                             query[currset] = list()
                             query[currset].append(i)
                         elif i not in query[currset]:
                             query[currset].append(i)
-
-                    # except:
-                    #     query["multiline"] += "invalid slot num or name [{}]\n".format(i)
-                        # invalid slot num
+                    except:
+                        if currset == ():
+                            query["multiline"] += "Invalid set name [{}]\n".format(i)
+                        else:
+                            query["multiline"] += "Invalid slot num [{}] for set [{}]\n".format(i, currset)
             else:
                 currset = name
 
         return query
+
 
     def bopaecmd_search(self, text):
         if text == () or len(text[0]) < 3:
