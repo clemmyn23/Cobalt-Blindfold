@@ -26,7 +26,7 @@ class Bopae:
         ("BNS soul shield utils\n"
         "Usage: !bopae list\n"
         "       !bopae user [username]\n"
-        "       !bopae search(optional) [name]\n"
+        "       !bopae [name]\n"
         "       !bopae search(optional) [name] [1-8 / all]...\n")
 
         if text == ():
@@ -55,6 +55,10 @@ class Bopae:
             resp = await self.bopaecmd_useradv(text[1::])
             await self.bot.say("```{}```".format(resp))
 
+        elif text[0] == "math":
+            resp = self.bopaecmd_math(text[1::])
+            await self.bot.say("```{}```".format(resp))
+
         elif text[0] == "search":
             await self.bot.say("```{}```".format(self.bopaecmd_search(text[1::])))
         else:
@@ -69,90 +73,53 @@ class Bopae:
         return ("BNS soul shield utils\n"
             "Usage: !bopae list\n"
             "       !bopae user [username]\n"
-            "       !bopae search(optional) [name]\n"
-            "       !bopae search(optional) [name] [1-8 / all]...\n")
-
-
-    # TODO better exception handling
-    def bopae_parser(self, text):
-        currset = ()
-        query = {"multiline": ""}
-        for i in text:
-            name = self.bopae_namesearch(i)
-            if name == "":
-                if i == "all":
-                    query[currset] = [1, 2, 3, 4, 5, 6, 7, 8]
-                else:
-                    try:
-                        i = int(i)
-
-                        if currset == ():
-                            raise Exception('Attempted to assign soulshield slot to empty set')
-                        if i < 1 or i > 8:
-                            raise Exception('Invalid soul shield slot')
-
-                        if currset not in query:
-                            query[currset] = list()
-                            query[currset].append(i)
-                        elif i not in query[currset]:
-                            query[currset].append(i)
-                    except:
-                        if currset == ():
-                            query["multiline"] += "Invalid set name [{}]\n".format(i)
-                        else:
-                            query["multiline"] += "Invalid slot num [{}] for set [{}]\n".format(i, currset)
-            else:
-                currset = name
-
-        return query
-
-
-    def bopaecmd_search(self, text):
-        if text == () or len(text[0]) < 3:
-            return "Search request too short (must be at least 3 characters long)\n"
-
-        query = self.bopae_namesearch(text[0])
-        if query == "":
-            return "Unable to find requested set [{}]\n".format(text[0])
-
-        multiline = ("Set name: {} [{}]\n"
-                    "Notes: {}\n"
-                    "\n").format(self.bopaeData[query]["setName"],
-                    query, self.bopaeData[query]["setNotes"])
-
-        multiline += "Set bonus:\n"
-        for i in self.bopaeData[query]["setBonus"]:
-            multiline += "{} set: {}\n".format(i, self.bopaeData[query]["setBonus"][i])
-        multiline += "\n"
-
-        if "all" in text[1::]:
-            querySet = [1, 2, 3, 4, 5, 6, 7, 8]
-        else:
-            querySet = text[1::]
-        for reqSlot in querySet:
-            try:
-                reqBopae = self.bopaeData[query]["slot"+str(reqSlot)]
-                multiline += (
-                    "Slot {}\n"
-                    "HP1: {}\n"
-                    "Fusion max: {}\n"
-                    "Primary stat: {} {}\n"
-                    "Secondary stats: {} {}\n"
-                    "\n"
-                    ).format(reqSlot,
-                    reqBopae["HP1"], reqBopae["fusionmax"],
-                    reqBopae["stat1"], reqBopae["data1"],
-                    reqBopae["stat2"], reqBopae["data2"]
-                    )
-            except:
-                multiline += "Invalid bopae slot requested [{}]\n\n".format(reqSlot)
-
-        return multiline
+            "       !bopae [name]\n"
+            "       !bopae search(optional) [name] [1-8 / all]... [name] [1-8]...\n")
 
 
     def bopaecmd_list(self):
         multiline = "Available SS sets: {}\n".format(", ".join(map(str, self.bopaeData)))
-        multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
+        multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
+        multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
+        return multiline
+
+
+    def bopaecmd_search(self, text):
+        query = self.bopae_parser(text)
+        multiline = query["multiline"] + "\n"
+        del query["multiline"]
+
+        for bopaeset in query:
+            # try:
+                multiline += ("# # # # # # # # # #\n"
+                            "Set name: {} [{}]\n"
+                            "Notes: {}\n"
+                            "\n").format(self.bopaeData[bopaeset]["setName"],
+                            bopaeset, self.bopaeData[bopaeset]["setNotes"])
+
+                multiline += "Set bonus:\n"
+                for i in self.bopaeData[bopaeset]["setBonus"]:
+                    multiline += "{} set: {}\n".format(i, self.bopaeData[bopaeset]["setBonus"][i])
+                multiline += "\n"
+
+                for reqSlot in query[bopaeset]:
+                    reqBopae = self.bopaeData[bopaeset]["slot"+str(reqSlot)]
+                    multiline += (
+                        "Slot {}\n"
+                        "HP1: {}\n"
+                        "Fusion max: {}\n"
+                        "Primary stat: {} {}\n"
+                        "Secondary stats: {} {}\n"
+                        "\n"
+                        ).format(reqSlot,
+                        reqBopae["HP1"], reqBopae["fusionmax"],
+                        reqBopae["stat1"], reqBopae["data1"],
+                        reqBopae["stat2"], reqBopae["data2"]
+                        )
+
+                multiline += "\n"
+            # except:
+            #     multiline += "Internal error\n"
         return multiline
 
 
@@ -192,24 +159,25 @@ class Bopae:
         return "TODO"
 
 
-    # def bopaecmd_math(self, mathType, *text):
-    #     """This does math stuff. TODO"""
-    #     mathType = mathType.lower()
-    #     for i in text:
-    #         try:
-    #             text[i] = int(i)
-    #         except:
-    #             text.remove(i)
-    #             # invalids.add(i)
-    #
-    #     if mathType == "sum":
-    #         return sum(text)
-    #     elif re.search(mathType, "^average") != None:
-    #         if len(text) == 0:
-    #             return "TODO"        # possible div by zero
-    #         return sum(text)/len(text)
-    #
-    #     return "TODO"
+    def bopaecmd_math(self, text):
+        if text == () or len(text) < 2:
+            return "See usage"
+        if text[0] == "sum":
+            reqstat = self.bopae_statsearch(text[1])
+            if reqstat == "" or reqstat == "fusionmax":
+                return "invalid request or fusionmax TODO [{}]\n".format(text[1])
+
+            query = self.bopae_parser(text[2::])
+            del query["multiline"]
+
+            result = 0
+            for bopaeset in query:
+                for i in query[bopaeset]:
+                    result += self.bopae_getdata(bopaeset, i, reqstat)
+
+            return "result: {}, requested sets: {}".format(str(result), query)
+
+        return "TODO"
 
 
     # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -224,9 +192,45 @@ class Bopae:
     def bopae_getdata(self, name, slot, stat):
         """Returns integer given valid request"""
         try:
-            return self.bopaeData[name]["slot"+slot][stat]
+            return self.bopaeData[name]["slot"+str(slot)][stat]
         except:
             return 0
+
+
+    # TODO better exception handling
+    # takes in text:list. returns dictionary key:setname, value:list integer slots
+    # multiline in dict: multiline string of errors. "" on empty
+    def bopae_parser(self, text):
+        currset = ()
+        query = {"multiline": ""}
+        for i in text:
+            name = self.bopae_namesearch(i)
+            if name == "":
+                if i == "all" and currset != ():
+                    query[currset] = [1, 2, 3, 4, 5, 6, 7, 8]
+                else:
+                    try:
+                        i = int(i)
+
+                        if currset == ():
+                            raise Exception('Attempted to assign soulshield slot to empty set')
+                        if i < 1 or i > 8:
+                            raise Exception('Invalid soul shield slot')
+
+                        if currset not in query:
+                            query[currset] = list()
+                            query[currset].append(i)
+                        elif i not in query[currset]:
+                            query[currset].append(i)
+                    except:
+                        if currset == ():
+                            query["multiline"] += "Invalid set name [{}]\n".format(i)
+                        else:
+                            query["multiline"] += "Invalid slot num [{}] for set [{}]\n".format(i, currset)
+            else:
+                currset = name
+
+        return query
 
 
     def bopae_namesearch(self, query):
