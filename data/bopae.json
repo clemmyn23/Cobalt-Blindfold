@@ -2,7 +2,7 @@
 	"bsh": {
 		"tags": ["hae mujin"],
 		"setName": "Bloodshade Harbor",
-		"setNotes": "purple balls are expensive now?",
+		"setNotes": "not Nightshade Harbor",
 		"setBonus": {
 			"3": {
 				"ACC": 70
@@ -83,7 +83,7 @@
 	"beido": {
 		"tags": ["be ido", "be-ido"],
 		"setName": "Sundered Nexus",
-		"setNotes": "expensive robots",
+		"setNotes": "robots",
 		"setBonus": {
 			"3": {
 				"ACC": 96,
@@ -238,8 +238,8 @@
 	},
 	"twisted": {
 		"tags": ["corrupted", "twisted"],
-		"setName": "Twisted *TODO*",
-		"setNotes": "Comes from various zones: Corrupted Black Spear Tribe (Twisted Grimhorn Wilds) / Ruined City (Zaiwei Ruins) / Battle of the Black Marsh (Gloomdross Incursion)/ Silent Pirate Ship (Shattered Masts)",
+		"setName": "Twisted",
+		"setNotes": "Comes from various zones: Corrupted Black Spear Tribe (Twisted Grimhorn Wilds) / Ruined City (Zaiwei Ruins) / Battle of the Black Marsh (Gloomdross Incursion) / Silent Pirate Ship (Shattered Masts)",
 		"setBonus": {
 			"3": {
 				"PEN": 104
@@ -390,7 +390,7 @@
 		}
 	},
 	"asura": {
-		"tags": ["sogun", "sura"],
+		"tags": ["sogun", "sura", "azura", "zura", "soguns"],
 		"setName": "Sogun's Lament",
 		"setNotes": "ice ice ice ice ice!",
 		"setBonus": {
