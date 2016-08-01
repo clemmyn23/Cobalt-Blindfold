@@ -36,7 +36,7 @@ class Bopae:
             if len(text[1]) >= 2:
                 # query = " ".join(map(str, text[1::]))
                 # await self.bot.say("DEBUG: bopae search result: " + self.bopae_statsearch(query))
-                query = await self.bopae_parser(text[1::])
+                query = self.bopae_parser(text[1::])
                 await self.bot.say("DEBUG: bopae parser: {}".format(query))
             else:
                 await self.bot.say("Usage: !bopae debug [query]")
@@ -228,6 +228,8 @@ class Bopae:
                         else:
                             query["multiline"] += "Invalid slot num [{}] for set [{}]\n".format(i, currset)
             else:
+                if name not in query:
+                    query[name] = list()
                 currset = name
 
         return query
