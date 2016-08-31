@@ -1,18 +1,17 @@
 import discord
 import re
+import aiohttp
+import asyncio
 from discord.ext import commands
 from cogs.utils.dataIO import dataIO
 from cogs.utils import checks
 from __main__ import send_cmd_help
+from urllib.parse import quote
 try:
     from bs4 import BeautifulSoup
     isSoupAvail = True
 except:
     isSoupAvail = False
-import aiohttp
-import asyncio
-from urllib.parse import quote
-
 
 
 class Kitsu:
@@ -40,48 +39,91 @@ class Kitsu:
         return
 
     @kitsu.command(name="user")
-        async def kitsu_user(self, *text):
+    async def kitsu_user(self, *text):
         """BNS character details docstring"""
         await self.bot.say("TODO: char details parser. [{}]".format(text))
         return
 
     @kitsu.command(name="alts", pass_context=True)
     async def kitsu_alts(self, ctx, *text):
-        """BNS account alts docstring"""
-        await self.bot.say("TODO: account alts parser. [{}]".format(text))
+        """BNS account alts parser"""
 
-        if text ==():
+        if text == ():
             await send_cmd_help(ctx)
             return
 
         name = quote(" ".join(map(str, text)), safe='')
         url = "http://na-bns.ncsoft.com/ingame/bs/character/search/info?c=" + name
         # url = "http://na-bns.ncsoft.com/ingame/bs/character/profile?c=" + name
+        try:
+            with aiohttp.Timeout(5):
+                async with aiohttp.get(url) as resp:
+                    if resp.status != 200:
+                        multiline = "{}\nBNS server potato #1 (http resp status {})".format(url, resp.status)
+                        await self.bot.say(multiline)
+                        return
 
-        async with aiohttp.get(url) as resp:
-            if resp.status != 200:
-                multiline = "{}\nBNS server potato (http resp status {})".format(url, resp.status)
-                await self.bot.say(multiline)
-                return
+                    soup = BeautifulSoup(await resp.text(), 'html.parser')
+        except Exception as e:
+            await self.bot.say("BNS server potato #02: {}".format(e))
+            return
 
-            soup = BeautifulSoup(await resp.text(), 'html.parser')
+        numresults = 0
+        try:
+            # soup = BeautifulSoup(open('charsearch2.html'), 'html.parser')
+            a = soup.body.find('div', id="container").find('div', id="contents").find('p', class_="schResult")
+            a.strong.unwrap()    # there are two <strong> tags
+            numresults = int(a.strong.string)
+            a.strong.unwrap()
+            schResult = ''.join(a.contents)
+        except Exception as e:
+            print("unknown parsing error. send help.\n{}".format(e))
+
+        if numresults == 0:
+            await self.bot.say("{}".format(schResult))
+            return
 
         try:
-            wall = soup.body.find(id="container").find(id="contents")
-            numresults = wall.find(id="header")
-            await self.bot.say(str(numresults))
+            # ==STRUCTURE==
+            # accountname   (parsed from alts)
+            # user          (abstract)
+            # - mainchar
+            # - - mainchar_name
+            # - - mainchar_stats
+            # - alts
 
-            wall = wall.find(class_="searchList").find(class_="user")
-            # for
+            # print("** parsing main")
+            user = soup.body.find('div', id='container').find('div', class_='searchList')
 
+            mainchar = user.ul.li.dl
+            mainchar_name = mainchar.dt.a
+            mainchar_stats = mainchar.find('dd', class_='desc').ul.contents
+            for i in mainchar_stats:
+                if i == "\n":
+                    mainchar_stats.remove(i)
 
-            # wall = soup.body.find(id="container").find(id="contents").find(class_="characterInfo")
-            # wall = wall.find(class_="itemArea").find(class_="wrapGem").find(class_="gemIcon").find("map")
-            # for piece in wall.find_all("area"):
-            #     # TODO
-            #     pass
-        except:
-            pass
+            # print("** parsing alts")
+            accountname = user.find('dd', class_='other').dl.dt.strong
+            alts = user.find('dd', class_='other').dl.find('dd', class_='desc2').ul.find_all('a')
+
+            # print("*************** info")
+            multiline = ""
+            multiline += "{}\n".format(schResult)
+            multiline += ("Account:\n  {}\n".format(accountname.string))
+            multiline += ("Main:\n  {}\n".format(mainchar_name.string))
+            # multiline += ("    {}\n".format(mainchar_name.get("href")))
+            for i in mainchar_stats:
+                multiline += ("  {}\n".format(i.string))
+            multiline += ("Other characters:\n")
+            for i in alts:
+                multiline += ("  {}\n".format(i.string))
+                # multiline += ("    {}\n".format(i.get("href")))
+
+            # print(multiline)
+            await self.bot.say("```{}```".format(multiline))
+
+        except Exception as e:
+            await self.bot.say("parsing error. send help\n{}".format(e))
 
         return
 
@@ -116,20 +158,6 @@ class Kitsu:
             return multiline
         except:
             return "Unable to find character [{}]".format(name)
-
-
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = COMMAND HANDLERS  = = = = = = = = = = = = = = = = = = = =
-
-
-
-
-
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = UTILITIES = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 
 def setup(bot):
