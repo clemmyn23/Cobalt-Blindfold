@@ -158,7 +158,7 @@
 	"yeti": {
 		"tags": ["snow"],
 		"setName": "Avalanche Den",
-		"setNotes": "save meeee senpai!~~",
+		"setNotes": "i-frame simulator",
 		"setBonus": {
 			"3": {
 				"PEN": 89
@@ -387,6 +387,150 @@
 			"data1": [0],
 			"stat2": [0],
 			"data2": [0]
+		}
+	},
+	"challenger_TODO": {
+		"tags": ["tower", "infinity", "sparring"],
+		"setName": "Challenger",
+		"setNotes": "Infinity tower challenge",
+		"setBonus": {
+			"3": {}
+		},
+		"slot1": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot2": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot3": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot4": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot5": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot6": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot7": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		},
+		"slot8": {
+			"HP1": [0, 0, 0],
+			"fusionmax": 0,
+			"stat1": "HP1",
+			"data1": [0],
+			"stat2": [0],
+			"data2": [0]
+		}
+	},
+	"forgotten": {
+		"tags": ["oblivion", "forgotten", "tomb", "desolate", ],
+		"setName": "desolate tomb?",
+		"setNotes": "need confirmation.",
+		"setBonus": {
+			"3": {"cDmg": 7}
+		},
+		"slot1": {
+			"HP1": [2710, 3290, 3870],
+			"fusionmax": 215,
+			"stat1": "ACC",
+			"data1": [210, 255, 301],
+			"stat2": ["cRate", "EVA", "BLK"],
+			"data2": [102, 128]
+		},
+		"slot2": {
+			"HP1": [5040, 6110, 7200],
+			"fusionmax": 225,
+			"stat1": "HP1",
+			"data1": [5040, 6110, 7200],
+			"stat2": ["cRate", "ACC", "DEF"],
+			"data2": [107, 134]
+		},
+		"slot3": {
+			"HP1": [2960, 3600, 4230],
+			"fusionmax": 235,
+			"stat1": "BLK",
+			"data1": [230, 279, 329],
+			"stat2": ["cRate", "ACC", "DEF"],
+			"data2": [112, 141]
+		},
+		"slot4": {
+			"HP1": [3090, 3760, 4420],
+			"fusionmax": 245,
+			"stat1": "EVA",
+			"data1": [240, 291, 343],
+			"stat2": ["cRate", "ACC", "BLK"],
+			"data2": [117, 147]
+		},
+		"slot5": {
+			"HP1": [3350, 4070, 4790],
+			"fusionmax": 266,
+			"stat1": "cRate",
+			"data1": [260, 316, 3772],
+			"stat2": ["ACC", "DEF", "EVA"],
+			"data2": [127, 159]
+		},
+		"slot6": {
+			"HP1": [3480, 4230, 4970],
+			"fusionmax": 276,
+			"stat1": "ACC",
+			"data1": [270, 328, 386],
+			"stat2": ["cRate", "DEF", "EVA"],
+			"data2": [132, 165]
+		},
+		"slot7": {
+			"HP1": [3610, 4380, 5160],
+			"fusionmax": 286,
+			"stat1": "cRate",
+			"data1": [280, 340, 401],
+			"stat2": ["ACC", "DEF", "EVA"],
+			"data2": [136, 171]
+		},
+		"slot8": {
+			"HP1": [3740, 4540, 5240],
+			"fusionmax": 296,
+			"stat1": "cRate",
+			"data1": [290, 352, 415],
+			"stat2": ["ACC", "HP2", "DEF"],
+			"data2": [141, 177, 1410, 1770]
 		}
 	},
 	"asura": {
