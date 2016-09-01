@@ -475,7 +475,7 @@
         }
     },
     "forgotten": {
-        "tags": ["oblivion", "forgotten", "tomb", "desolate", ],
+        "tags": ["oblivion", "forgotten", "tomb", "desolate"],
         "setName": "desolate tomb?",
         "setNotes": "need confirmation.",
         "setBonus": {
