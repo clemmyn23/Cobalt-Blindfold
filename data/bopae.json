@@ -474,10 +474,10 @@
             "data2": [153, 192]
         }
     },
-    "forgotten": {
-        "tags": ["oblivion", "forgotten", "tomb", "desolate"],
-        "setName": "desolate tomb?",
-        "setNotes": "need confirmation.",
+    "oblivion": {
+        "tags": ["forgotten", "tomb", "desolate"],
+        "setName": "Oblivion",
+        "setNotes": "Desolate Tomb set",
         "setBonus": {
             "3": {
                 "cDmg": 7
@@ -519,7 +519,7 @@
             "HP1": [3350, 4070, 4790],
             "fusionmax": 266,
             "stat1": "cRate",
-            "data1": [260, 316, 3772],
+            "data1": [260, 316, 372],
             "stat2": ["ACC", "DEF", "EVA"],
             "data2": [127, 159]
         },
