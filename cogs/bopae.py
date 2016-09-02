@@ -21,23 +21,21 @@ class Bopae:
         self.bopaeData = dataIO.load_json("data/bopae/bopae.json")
         self.allcmds = ["list", "user", "search", "debug"]
 
+
+
     @commands.command()
     async def bopae(self, *text):
-        ("BNS soul shield utils\n"
-        "Usage: !bopae list\n"
-        "       !bopae user [username]\n"
-        "       !bopae [name]\n"
-        "       !bopae search(optional) [name] [1-8 / all]...\n")
+        ("BNS soul shield utils\n\n"
+        "Commands:\n"
+        "  (search) [name] [1-8 / all]..  Soul Shield search\n"
+        "  list                           List all available sets\n")
 
         if text == ():
             await self.bot.say("```{}```".format(self.bopaecmd_help()))
 
         elif text[0] == "debug":
             if len(text[1]) >= 2:
-                # query = " ".join(map(str, text[1::]))
-                # await self.bot.say("DEBUG: bopae search result: " + self.bopae_statsearch(query))
-                query = self.bopae_parser(text[1::])
-                await self.bot.say("DEBUG: bopae parser: {}".format(query))
+                await self.bot.say("DEBUG: statsearch: " + self.bopae_statsearch(query))
             else:
                 await self.bot.say("Usage: !bopae debug [query]")
 
@@ -51,14 +49,6 @@ class Bopae:
             resp = await self.bopaecmd_user(text[1::])
             await self.bot.say("```{}```".format(resp))
 
-        elif text[0] == "useradv":
-            resp = await self.bopaecmd_useradv(text[1::])
-            await self.bot.say("```{}```".format(resp))
-
-        elif text[0] == "math":
-            resp = self.bopaecmd_math(text[1::])
-            await self.bot.say("```{}```".format(resp))
-
         elif text[0] == "search":
             await self.bot.say("```{}```".format(self.bopaecmd_search(text[1::])))
         else:
@@ -66,21 +56,19 @@ class Bopae:
 
 
     # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
     # = = = = = = = = = = = = = COMMAND HANDLERS  = = = = = = = = = = = = = = = = = = = =
 
     def bopaecmd_help(self):
-        return ("BNS soul shield utils\n"
-            "Usage: !bopae list\n"
-            "       !bopae user [username]\n"
-            "       !bopae [name]\n"
-            "       !bopae search(optional) [name] [1-8 / all]... [name] [1-8]...\n")
-
+        return ("BNS soul shield utils\n\n"
+        "Commands:\n"
+        "  (search) [name] [1-8 / all]..  Soul Shield search\n"
+        "  list                           List all available sets\n"
+        "  user [name]                    Equipped bopae (no database)")
 
     def bopaecmd_list(self):
-        multiline = "Available SS sets: {}\n".format(", ".join(map(str, self.bopaeData)))
-        multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
-        multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
+        multiline = "Available SS sets:\n{}\n".format(", ".join(map(str, self.bopaeData)))
+        # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
+        # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
         return multiline
 
 
@@ -155,36 +143,32 @@ class Bopae:
             return "Unable to find character [{}]".format(name)
 
 
-    async def bopaecmd_useradv(self, text):
-        return "TODO"
+    # async def bopaecmd_useradv(self, text):
+    #     return "TODO"
+
+    # def bopaecmd_math(self, text):
+    #     if text == () or len(text) < 2:
+    #         return "See usage"
+    #     if text[0] == "sum":
+    #         reqstat = self.bopae_statsearch(text[1])
+    #         if reqstat == "" or reqstat == "fusionmax":
+    #             return "invalid request or fusionmax TODO [{}]\n".format(text[1])
+    #
+    #         query = self.bopae_parser(text[2::])
+    #         del query["multiline"]
+    #
+    #         result = 0
+    #         for bopaeset in query:
+    #             for i in query[bopaeset]:
+    #                 result += self.bopae_getdata(bopaeset, i, reqstat)
+    #
+    #         return "result: {}, requested sets: {}".format(str(result), query)
+    #
+    #     return "TODO"
 
 
-    def bopaecmd_math(self, text):
-        if text == () or len(text) < 2:
-            return "See usage"
-        if text[0] == "sum":
-            reqstat = self.bopae_statsearch(text[1])
-            if reqstat == "" or reqstat == "fusionmax":
-                return "invalid request or fusionmax TODO [{}]\n".format(text[1])
-
-            query = self.bopae_parser(text[2::])
-            del query["multiline"]
-
-            result = 0
-            for bopaeset in query:
-                for i in query[bopaeset]:
-                    result += self.bopae_getdata(bopaeset, i, reqstat)
-
-            return "result: {}, requested sets: {}".format(str(result), query)
-
-        return "TODO"
-
-
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
     # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
     # = = = = = = = = = = = = = UTILITIES = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
 
     # name should be valid key
     # slot integer in range 1..8
@@ -237,16 +221,19 @@ class Bopae:
 
     def bopae_namesearch(self, query):
         """Searches the corresponding object key given query"""
+        if query == ():
+            return ""
+
         query = query.lower()
         if query in self.bopaeData:
             return query
 
-        if len(query) < 3:
+        if len(query) < 3 or query == "all":
             return ""
 
         query = re.compile(query)
         for i in self.bopaeData:
-            if query.search(self.bopaeData[i]["setName"]) != None:
+            if query.search(self.bopaeData[i]["setName"].lower()) != None:
                 return i
             for tag in self.bopaeData[i]["tags"]:
                 if query.search(tag) != None:
@@ -267,64 +254,6 @@ class Bopae:
                 return i
 
         return ""
-
-        # for i in ["ap", "attkpwr", "attackpwr", "attkpower", "attackpower", "attack power"]:
-        #     if query.search(i) != None:
-        #         return "AP"
-        # for i in ["crate", "critical", "critrate", "criticalrate", "critical rate"]:
-        #     if query.search(i) != None:
-        #         return "cRate"
-        # for i in ["cdmg", "critdamage", "criticaldmg", "criticaldamage", "critical damage"]:
-        #     if query.search(i) != None:
-        #         return "cDmg"
-        # for i in ["pen"]:
-        #     if query.search(i) != None:
-        #         return "PEN"
-        # for i in ["admg"]:
-        #     if query.search(i) != None:
-        #         return "aDmg"
-        # for i in ["ele"]:
-        #     if query.search(i) != None:
-        #         return "Ele"
-        # for i in ["ccdmg"]:
-        #     if query.search(i) != None:
-        #         return "CCdmg"
-        # for i in ["acc", "accuracy"]:
-        #     if query.search(i) != None:
-        #         return "ACC"
-        #
-        # for i in ["hp1"]:
-        #     if query.search(i) != None:
-        #         return "HP1"
-        # for i in ["hp2"]:
-        #     if query.search(i) != None:
-        #         return "HP2"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "DEF"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "cDef"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "VIT"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "REG"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "EVA"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "BLK"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "rDmg"
-        # for i in []:
-        #     if query.search(i) !- None:
-        #         return "fusionmax"
-        # return ""
-
 
 
 def setup(bot):
