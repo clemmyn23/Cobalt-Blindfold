@@ -477,7 +477,7 @@
     "oblivion": {
         "tags": ["forgotten", "tomb", "desolate"],
         "setName": "Oblivion",
-        "setNotes": "Desolate Tomb set",
+        "setNotes": "Desolate Tomb (forgotten)",
         "setBonus": {
             "3": {
                 "cDmg": 7
@@ -536,7 +536,7 @@
             "fusionmax": 286,
             "stat1": "cRate",
             "data1": [280, 340, 401],
-            "stat2": ["ACC", "DEF", "EVA"],
+            "stat2": ["ACC", "DEF", "BLK"],
             "data2": [136, 171]
         },
         "slot8": {
