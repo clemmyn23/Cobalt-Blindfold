@@ -17,5 +17,6 @@ Install:
 
 
 TODO:
+- bopae cleanups focussing on python dict vs list implementations
 - git "dev" branch for messing around 
 - data entry
