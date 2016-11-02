@@ -10,7 +10,7 @@
             "5": {
                 "EVA": 212
             },
-            "8": {
+            "7": {
                 "PEN": 297,
                 "BLK": 127
             }
@@ -166,7 +166,7 @@
             "5": {
                 "EVA": 268
             },
-            "8": {
+            "7": {
                 "cRate": 161,
                 "PEN": 376
             }
@@ -239,7 +239,7 @@
     "twisted": {
         "tags": ["corrupted", "twisted"],
         "setName": "Twisted",
-        "setNotes": "Comes from various zones: Corrupted Black Spear Tribe (Twisted Grimhorn Wilds) / Ruined City (Zaiwei Ruins) / Battle of the Black Marsh (Gloomdross Incursion) / Silent Pirate Ship (Shattered Masts)",
+        "setNotes": "Comes from various zones: Twisted Grimhorn Wilds / Zaiwei Ruins / Gloomdross Incursion / Shattered Masts",
         "setBonus": {
             "3": {
                 "PEN": 104
@@ -247,7 +247,7 @@
             "5": {
                 "EVA": 314
             },
-            "8": {
+            "7": {
                 "cRate": 188,
                 "PEN": 440
             }
@@ -328,7 +328,7 @@
             "5": {
                 "HP1": 2900
             },
-            "8": {
+            "7": {
                 "PEN": 174,
                 "ACC": 406
             }
@@ -548,87 +548,6 @@
             "data2": [141, 177, 1410, 1770]
         }
     },
-    "ebondrake": {
-        "tags": ["black", "dragon", "citadel", "zakhan"],
-        "setName": "Ebondrake Citadel",
-        "setNotes": "assassins <3",
-        "setBonus": {
-            "3": {
-                "AP": 7
-            },
-            "5": {
-                "cDmg": 12
-            },
-            "8": {
-                "PEN": 284,
-                "HP1": 2000
-            }
-        },
-        "slot1": {
-            "HP1": [2710, 3290, 3870],
-            "fusionmax": 215,
-            "stat1": "ACC",
-            "data1": [210, 255, 301],
-            "stat2": ["cRate", "DEF", "BLK"],
-            "data2": [102, 128]
-        },
-        "slot2": {
-            "HP1": [2840, 3440, 4050],
-            "fusionmax": 225,
-            "stat1": "ACC",
-            "data1": [220, 267, 315],
-            "stat2": ["cRate", "DEF", "BLK"],
-            "data2": [107, 134]
-        },
-        "slot3": {
-            "HP1": [2960, 3600, 4230],
-            "fusionmax": 235,
-            "stat1": "EVA",
-            "data1": [230, 279, 329],
-            "stat2": ["ACC", "HP2", "BLK"],
-            "data2": [112, 141, 1120, 1410]
-        },
-        "slot4": {
-            "HP1": [3090, 3760, 4420],
-            "fusionmax": 245,
-            "stat1": "DEF",
-            "data1": [240, 291, 343],
-            "stat2": ["cRate", "HP2", "BLK"],
-            "data2": [117, 147, 1170, 1470]
-        },
-        "slot5": {
-            "HP1": [3350, 4070, 4790],
-            "fusionmax": 266,
-            "stat1": "EVA",
-            "data1": [260, 316, 372],
-            "stat2": ["cRate", "DEF", "BLK"],
-            "data2": [127, 159]
-        },
-        "slot6": {
-            "HP1": [6180, 7510, 8830],
-            "fusionmax": 276,
-            "stat1": "HP1",
-            "data1": [6180, 7510, 8830],
-            "stat2": ["cRate", "DEF", "BLK"],
-            "data2": [132, 165]
-        },
-        "slot7": {
-            "HP1": [3610, 4380, 5160],
-            "fusionmax": 286,
-            "stat1": "BLK",
-            "data1": [280, 340, 401],
-            "stat2": ["cRate", "ACC", "DEF"],
-            "data2": [136, 171]
-        },
-        "slot8": {
-            "HP1": [3740, 4540, 5340],
-            "fusionmax": 296,
-            "stat1": "cRate",
-            "data1": [290, 352, 415],
-            "stat2": ["ACC", "HP2", "DEF"],
-            "data2": [141, 177]
-        }
-    },
     "asura": {
         "tags": ["sogun", "sura", "azura", "zura", "soguns"],
         "setName": "Sogun's Lament",
@@ -640,7 +559,7 @@
             "5": {
                 "cDmg": 7
             },
-            "8": {
+            "7": {
                 "PEN": 200,
                 "HP1": 1800
             }
@@ -708,6 +627,166 @@
             "data1": [229, 278, 328],
             "stat2": ["ACC", "HP2", "DEF"],
             "data2": [112, 140, 1120, 1400]
+        }
+		},
+		 "Ebondrake": {
+        "tags": ["black", "dragon", "ebondrake", "citadel"],
+        "setName": "Ebondrake",
+        "setNotes": "Ebondrake Citadel",
+        "setBonus": {
+            "3": {
+                "AP": 7
+            },
+            "5": {
+                "cDmg": 12
+            },
+            "7": {
+                "PEN": 284
+            }
+        },
+        "slot1": {
+            "HP1": [2710, 3290, 3870],
+            "fusionmax": 215,
+            "stat1": "ACC",
+            "data1": [210, 255, 301],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [102, 128]
+        },
+        "slot2": {
+            "HP1": [2840, 3440, 4050],
+            "fusionmax": 225,
+            "stat1": "ACC",
+            "data1": [220, 267, 315],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [107, 134]
+        },
+        "slot3": {
+            "HP1": [2960, 3600, 4230],
+            "fusionmax": 235,
+            "stat1": "EVA",
+            "data1": [230, 279, 329],
+            "stat2": ["ACC", "HP2", "BLK"],
+            "data2": [112, 141, 1120, 1410]
+        },
+        "slot4": {
+            "HP1": [3090, 3760, 4420],
+            "fusionmax": 245,
+            "stat1": "DEF",
+            "data1": [240, 291, 343],
+            "stat2": ["cRate", "HP2", "BLK"],
+            "data2": [117, 147, 1170, 1470]
+        },
+        "slot5": {
+            "HP1": [3350, 4070, 4790],
+            "fusionmax": 266,
+            "stat1": "EVA",
+            "data1": [260, 316, 372],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [127, 159]
+        },
+        "slot6": {
+            "HP1": [6180, 7510, 8830],
+            "fusionmax": 276,
+            "stat1": "HP1",
+            "data1": [6180, 7510, 8830],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [132, 165]
+        },
+        "slot7": {
+            "HP1": [3610, 4380, 5160],
+            "fusionmax": 286,
+            "stat1": "BLK",
+            "data1": [280, 340, 401],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [136, 171]
+        },
+        "slot8": {
+            "HP1": [3740, 4540, 5340],
+            "fusionmax": 296,
+            "stat1": "cRate",
+            "data1": [290, 352, 415],
+            "stat2": ["ACC", "HP2", "DEF"],
+			"data2": [141, 177]
+        }
+		},
+		 "Elder": {
+        "tags": ["elder"],
+        "setName": "Elder Soul Shield",
+        "setNotes": "Beluga Lagoon & Whirlwind Valley, Legendary PVP Soulshield",
+        "setBonus": {
+            "3": {
+                "Depends of the class": 0
+            },
+            "5": {
+                "ACC, DEF, HP": [165,  298, 15510] 
+            },
+            "7": {
+                "Depends of the class": 0
+            }
+        },
+        "slot1": {
+            "HP1": [3880, 5550],
+            "fusionmax": 290,
+            "stat1": "cDef",
+            "data1": [284, 406],
+            "stat2": ["ACC", "DEF", "HP2"],
+            "data2": [122, 174, 1590, 2260]
+        },
+        "slot2": {
+            "HP1": [3880, 5810],
+            "fusionmax": 304,
+            "stat1": "HP1",
+            "data1": [3890, 5530],
+            "stat2": ["cDef", "DEF", "ACC"],
+            "data2": [127, 182]
+        },
+        "slot3": {
+            "HP1": [4250, 6070],
+            "fusionmax": 318,
+            "stat1": "ACC",
+            "data1": [311, 445],
+            "stat2": ["cDef", "DEF", "HP2"],
+            "data2": [133, 190, 1730, 2470]
+        },
+        "slot4": {
+            "HP1": [4440, 6340],
+            "fusionmax": 332,
+            "stat1": "cDef",
+            "data1": [325, 465],
+            "stat2": ["cRate", "ACC", "HP2"],
+            "data2": [139, 198, 1810, 2570]
+        },
+        "slot5": {
+            "HP1": [4810, 6870],
+            "fusionmax": 359,
+            "stat1": "HP1",
+            "data1": [4580, 6540],
+            "stat2": ["cRate", "cDef", "ACC"],
+            "data2": [151, 215]
+        },
+        "slot6": {
+            "HP1": [4990, 7130],
+            "fusionmax": 373,
+            "stat1": "EVA",
+            "data1": [366, 523],
+            "stat2": ["cDef", "DEF", "ACC"],
+            "data2": [156, 223]
+        },
+        "slot7": {
+            "HP1": [5180, 7390],
+            "fusionmax": 387,
+            "stat1": "BLK",
+            "data1": [378, 541],
+            "stat2": ["cDef", "ACC", "DEF"],
+            "data2": [161, 232]
+        },
+        "slot8": {
+            "HP1": [5360, 7660],
+            "fusionmax": 401,
+            "stat1": "cDef",
+            "data1": [392, 561],
+            "stat2": ["cRate", "DEF", "HP2"],
+			"data2": [168, 240, 2180, 3120]
         }
     }
 }
