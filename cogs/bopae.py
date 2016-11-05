@@ -2,18 +2,29 @@ import discord
 import re
 from discord.ext import commands
 from cogs.utils.dataIO import dataIO
-try:
-    from bs4 import BeautifulSoup
-    isSoupAvail = True
-except:
-    isSoupAvail = False
-import aiohttp
 import asyncio
-from urllib.parse import quote
+
+
+# BOPAE_STATS = False
+# BOPAE_USERPARSE = False
+
+def setup(bot):
+    bot.add_cog(Bopae2(bot))
+
+    # if BOPAE_STATS:
+    #     try:
+    #         from cogs.bopae.parser import *
+    #     except:
+    #         pass
+    # if BOPAE_USERPARSE:
+    #     try:
+    #         from cogs.bopae.statistics import *
+    #     except:
+    #         pass
 
 
 
-class Bopae:
+class Bopae2:
     """BNS soul shield utils"""
 
     def __init__(self, bot):
@@ -21,36 +32,19 @@ class Bopae:
         self.bopaeData = dataIO.load_json("data/bopae/bopae.json")
         self.allcmds = ["list", "user", "search", "debug"]
 
-
-
     @commands.command()
-    async def bopae(self, *text):
+    async def bopae2(self, *text):
         ("BNS soul shield utils\n\n"
         "Commands:\n"
         "  (search) [name] [1-8 / all]..  Soul Shield search\n"
         "  list                           List all available sets\n")
 
-        if text == ():
-            await self.bot.say("```{}```".format(self.bopaecmd_help()))
-
-        elif text[0] == "debug":
-            if len(text[1]) >= 2:
-                await self.bot.say("DEBUG: statsearch: " + self.bopae_statsearch(query))
-            else:
-                await self.bot.say("Usage: !bopae debug [query]")
-
-        elif text[0] == "help":
+        if not text or text[0] == "help":
             await self.bot.say("```{}```".format(self.bopaecmd_help()))
 
         elif text[0] == "list":
             await self.bot.say(self.bopaecmd_list())
 
-        elif text[0] == "user":
-            resp = await self.bopaecmd_user(text[1::])
-            await self.bot.say("```{}```".format(resp))
-
-        elif text[0] == "search":
-            await self.bot.say("```{}```".format(self.bopaecmd_search(text[1::])))
         else:
             await self.bot.say("```{}```".format(self.bopaecmd_search(text)))
 
@@ -61,16 +55,14 @@ class Bopae:
     def bopaecmd_help(self):
         return ("BNS soul shield utils\n\n"
         "Commands:\n"
-        "  (search) [name] [1-8 / all]..  Soul Shield search\n"
-        "  list                           List all available sets\n"
-        "  user [name]                    Equipped bopae (no database)")
+        "  [name] [1-8 / all]..  Soul Shield search\n"
+        "  list                  List all available sets")
 
     def bopaecmd_list(self):
         multiline = "Available SS sets:\n{}\n".format(", ".join(map(str, self.bopaeData)))
         # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
         # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
         return multiline
-
 
     def bopaecmd_search(self, text):
         query = self.bopae_parser(text)
@@ -111,74 +103,19 @@ class Bopae:
         return multiline
 
 
-    async def bopaecmd_user(self, text):
-        if text == ():
-            return self.bopaecmd_help()
-
-        name = quote(" ".join(map(str, text)), safe='')
-        url = "http://na-bns.ncsoft.com/ingame/bs/character/profile?c=" + name
-
-        async with aiohttp.get(url) as resp:
-            if resp.status != 200:
-                multiline = "{}\n".format(url)
-                multiline += "BNS server potato (http resp status {})".format(resp.status)
-                # await self.bot.say(multiline)
-                return multiline
-            soup = BeautifulSoup(await resp.text(), 'html.parser')
-
-        try:
-            wall = soup.body.find(id="container").find(id="contents").find(class_="characterInfo")
-            wall = wall.find(class_="itemArea").find(class_="wrapGem").find(class_="gemIcon").find("map")
-            multiline = "Requested name [{}]\n".format(name)
-            multiline += "{}\n".format(url)
-            slot = 1
-            for piece in wall.find_all("area"):
-                try:
-                    multiline += "slot #{}: {}, \titem-ID {}\n".format(slot, piece["alt"], piece["item-data"])
-                except:
-                    multiline += "slot #{}: empty\n".format(slot)
-                slot += 1
-            return multiline
-        except:
-            return "Unable to find character [{}]".format(name)
-
-
-    # async def bopaecmd_useradv(self, text):
-    #     return "TODO"
-
-    # def bopaecmd_math(self, text):
-    #     if text == () or len(text) < 2:
-    #         return "See usage"
-    #     if text[0] == "sum":
-    #         reqstat = self.bopae_statsearch(text[1])
-    #         if reqstat == "" or reqstat == "fusionmax":
-    #             return "invalid request or fusionmax TODO [{}]\n".format(text[1])
-    #
-    #         query = self.bopae_parser(text[2::])
-    #         del query["multiline"]
-    #
-    #         result = 0
-    #         for bopaeset in query:
-    #             for i in query[bopaeset]:
-    #                 result += self.bopae_getdata(bopaeset, i, reqstat)
-    #
-    #         return "result: {}, requested sets: {}".format(str(result), query)
-    #
-    #     return "TODO"
-
 
     # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
     # = = = = = = = = = = = = = UTILITIES = = = = = = = = = = = = = = = = = = = = = = = =
 
-    # name should be valid key
-    # slot integer in range 1..8
-    # stat should be valid stat key
-    def bopae_getdata(self, name, slot, stat):
-        """Returns integer given valid request"""
-        try:
-            return self.bopaeData[name]["slot"+str(slot)][stat]
-        except:
-            return 0
+    # # name should be valid key
+    # # slot integer in range 1..8
+    # # stat should be valid stat key
+    # def bopae_getdata(self, name, slot, stat):
+    #     """Returns integer given valid request"""
+    #     try:
+    #         return self.bopaeData[name]["slot"+str(slot)][stat]
+    #     except:
+    #         return 0
 
 
     # TODO better exception handling
@@ -240,24 +177,3 @@ class Bopae:
                     return i
 
         return ""
-
-
-    def bopae_statsearch(self, query):
-        # TODO optimise
-        # " AP cRate cDmg PEN aDmg Ele CCdmg ACC HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax "
-        if len(query) < 2:
-            return ""
-
-        query = re.compile(query.lower())
-        for i in ["AP", "cRate", "cDmg", "PEN", "aDmg", "Ele", "CCdmg", "ACC", "HP1", "HP2", "DEF", "cDef", "VIT", "REG", "EVA", "BLK", "rDmg", "fusionmax"]:
-            if query.search(i.lower()) != None:
-                return i
-
-        return ""
-
-
-def setup(bot):
-    if isSoupAvail:
-        bot.add_cog(Bopae(bot))
-    else:
-        raise RuntimeError("You need to run `pip3 install beautifulsoup4`")
