@@ -1,0 +1,78 @@
+{
+    "challenger": {
+        "tags": ["tower", "infinity"],
+        "setName": "Challenger",
+        "setNotes": "Infinity tower F40+",
+        "setBonus": {
+            "3": {
+                "PEN": 480,
+                "CCdmg": 330,
+                "cDef": 490
+            }
+        },
+        "slot1": {
+            "HP1": [5530, 6720, 7910],
+            "fusionmax": 232,
+            "stat1": "HP1",
+            "data1": [5530, 6720, 7910],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [111, 139]
+        },
+        "slot2": {
+            "HP1": [3420, 4150, 4880],
+            "fusionmax": 243,
+            "stat1": "cRate",
+            "data1": [238, 289, 341],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [116, 145]
+        },
+        "slot3": {
+            "HP1": [6060, 7360, 8660],
+            "fusionmax": 254,
+            "stat1": "HP1",
+            "data1": [6060, 7360, 8660],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [127, 159]
+        },
+        "slot4": {
+            "HP1": [3730, 4530, 5330],
+            "fusionmax": 265,
+            "stat1": "ACC",
+            "data1": [259, 315, 371],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [127, 159]
+        },
+        "slot5": {
+            "HP1": [6850, 8310, 9790],
+            "fusionmax": 287,
+            "stat1": "HP1",
+            "data1": [6850, 8310, 9790],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [137, 172]
+        },
+        "slot6": {
+            "HP1": [4190, 5090, 5990],
+            "fusionmax": 298,
+            "stat1": "DEF",
+            "data1": [291, 354, 417],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [143, 179]
+        },
+        "slot7": {
+            "HP1": [7380, 8960, 10550],
+            "fusionmax": 310,
+            "stat1": "HP1",
+            "data1": [7380, 8960, 10550],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [148, 185]
+        },
+        "slot8": {
+            "HP1": [4500, 5470, 6440],
+            "fusionmax": 321,
+            "stat1": "cRate",
+            "data1": [314, 381, 449],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [153, 192]
+        }
+    }
+}

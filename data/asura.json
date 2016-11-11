@@ -1,0 +1,83 @@
+{
+    "asura": {
+        "tags": ["sogun", "sura", "azura", "zura", "soguns"],
+        "setName": "Sogun's Lament",
+        "setNotes": "ice ice ice ice ice!",
+        "setBonus": {
+            "3": {
+                "AP": 5
+            },
+            "5": {
+                "cDmg": 7
+            },
+            "8": {
+                "PEN": 200,
+                "HP1": 1800
+            }
+        },
+        "slot1": {
+            "HP1": [2420, 2940, 3460],
+            "fusionmax": 169,
+            "stat1": "ACC",
+            "data1": [174, 211, 249],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [80, 101]
+        },
+        "slot2": {
+            "HP1": [2540, 3080, 3630],
+            "fusionmax": 178,
+            "stat1": "ACC",
+            "data1": [174, 211, 249],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [84, 106]
+        },
+        "slot3": {
+            "HP1": [2650, 3220, 3790],
+            "fusionmax": 186,
+            "stat1": "EVA",
+            "data1": [182, 221, 260],
+            "stat2": ["ACC", "HP2", "BLK"],
+            "data2": [88, 111]
+        },
+        "slot4": {
+            "HP1": [2770, 3360, 3950],
+            "fusionmax": 194,
+            "stat1": "DEF",
+            "data1": [189, 230, 271],
+            "stat2": ["cRate", "HP2", "BLK"],
+            "data2": [92, 116, 920, 1160]
+        },
+        "slot5": {
+            "HP1": [3000, 3620, 4280],
+            "fusionmax": 210,
+            "stat1": "EVA",
+            "data1": [205, 249, 294],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [100, 125]
+        },
+        "slot6": {
+            "HP1": [5240, 6370, 7500],
+            "fusionmax": 218,
+            "stat1": "HP1",
+            "data1": [5240, 6370, 7500],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [104, 130]
+        },
+        "slot7": {
+            "HP1": [3230, 3920, 4610],
+            "fusionmax": 226,
+            "stat1": "BLK",
+            "data1": [221, 268, 316],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [108, 135]
+        },
+        "slot8": {
+            "HP1": [3350, 4060, 4780],
+            "fusionmax": 234,
+            "stat1": "cRate",
+            "data1": [229, 278, 328],
+            "stat2": ["ACC", "HP2", "DEF"],
+            "data2": [112, 140, 1120, 1400]
+        }
+    }
+}

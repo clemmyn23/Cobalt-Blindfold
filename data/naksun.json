@@ -1,0 +1,83 @@
+{
+    "naksun": {
+        "tags": ["yukson"],
+        "setName": "Naksun",
+        "setNotes": "Mushin Tower F12-15",
+        "setBonus": {
+            "3": {
+                "HP1": 960
+            },
+            "5": {
+                "HP1": 2900
+            },
+            "8": {
+                "PEN": 174,
+                "ACC": 406
+            }
+        },
+        "slot1": {
+            "HP1": [4290, 5210, 6130],
+            "fusionmax": 183,
+            "stat1": "HP1",
+            "data1": [4290, 5210, 6130],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [88, 110]
+        },
+        "slot2": {
+            "HP1": [2620, 3190, 3740],
+            "fusionmax": 192,
+            "stat1": "cRate",
+            "data1": [188, 228, 269],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [92, 115]
+        },
+        "slot3": {
+            "HP1": [4700, 5700, 6720],
+            "fusionmax": 201,
+            "stat1": "HP1",
+            "data1": [4700, 5700, 6720],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [96, 120]
+        },
+        "slot4": {
+            "HP1": [2860, 3470, 4080],
+            "fusionmax": 210,
+            "stat1": "ACC",
+            "data1": [204, 249, 294],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [100, 125]
+        },
+        "slot5": {
+            "HP1": [5310, 6460, 7600],
+            "fusionmax": 227,
+            "stat1": "HP1",
+            "data1": [5310, 6460, 7600],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [108, 136]
+        },
+        "slot6": {
+            "HP1": [3210, 3900, 4590],
+            "fusionmax": 236,
+            "stat1": "DEF",
+            "data1": [231, 280, 330],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [112, 141]
+        },
+        "slot7": {
+            "HP1": [5720, 6950, 8180],
+            "fusionmax": 244,
+            "stat1": "HP1",
+            "data1": [5720, 6950, 8180],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [116, 146]
+        },
+        "slot8": {
+            "HP1": [3450, 4190, 4930],
+            "fusionmax": 253,
+            "stat1": "cRate",
+            "data1": [248, 301, 355],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [120, 151]
+        }
+    }
+}

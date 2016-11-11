@@ -19,8 +19,8 @@ Soulshields data and utilities for Blade and Soul game
 
 
 ### TODO:  
-- use python dict to reduce unnecessary checks
-- split messages if result is too long (err 400)
+- redesign search to account for class specific soul shields
+- search result formatting and optimisations
 - profile parser
 - statistics and analysis?
 - data entry

@@ -1,0 +1,77 @@
+{
+    "beido": {
+        "tags": ["be ido", "be-ido", "ido"],
+        "setName": "Sundered Nexus",
+        "setNotes": "robots",
+        "setBonus": {
+            "3": {
+                "ACC": 96,
+                "PEN": 265
+            }
+        },
+        "slot1": {
+            "HP1": [2320, 2820, 3320],
+            "fusionmax": 157,
+            "stat1": "ACC",
+            "data1": [175, 208, 240],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [84, 103]
+        },
+        "slot2": {
+            "HP1": [4280, 5140, 6010],
+            "fusionmax": 164,
+            "stat1": "HP1",
+            "data1": [4280, 5140, 6010],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [88, 108]
+        },
+        "slot3": {
+            "HP1": [2550, 3090, 3640],
+            "fusionmax": 172,
+            "stat1": "BLK",
+            "data1": [192, 228, 265],
+            "stat2": ["cRate", "ACC", "EVA"],
+            "data2": [91, 112]
+        },
+        "slot4": {
+            "HP1": [2660, 3230, 3800],
+            "fusionmax": 179,
+            "stat1": "EVA",
+            "data1": [200, 238, 276],
+            "stat2": ["cRate", "ACC", "BLK"],
+            "data2": [96, 118]
+        },
+        "slot5": {
+            "HP1": [2880, 3500, 4110],
+            "fusionmax": 194,
+            "stat1": "cRate",
+            "data1": [216, 257, 298],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [104, 128]
+        },
+        "slot6": {
+            "HP1": [2990, 3630, 4270],
+            "fusionmax": 201,
+            "stat1": "HP1",
+            "data1": [225, 267, 310],
+            "stat2": ["cRate", "DEF", "EVA"],
+            "data2": [108, 132]
+        },
+        "slot7": {
+            "HP1": [3100, 3760, 4430],
+            "fusionmax": 209,
+            "stat1": "cRate",
+            "data1": [233, 277, 321],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [112, 137]
+        },
+        "slot8": {
+            "HP1": [3210, 3900, 4590],
+            "fusionmax": 216,
+            "stat1": "cRate",
+            "data1": [242, 287, 333],
+            "stat2": ["ACC", "HP2", "DEF"],
+            "data2": [116, 142, 1160, 1420]
+        }
+    }
+}

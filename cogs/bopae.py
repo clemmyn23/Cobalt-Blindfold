@@ -1,68 +1,57 @@
+import os, re, asyncio
 import discord
-import re
 from discord.ext import commands
 from cogs.utils.dataIO import dataIO
-import asyncio
+from __main__ import send_cmd_help
+from .utils.chat_formatting import *
 
 
-# BOPAE_STATS = False
-# BOPAE_USERPARSE = False
+BOPAE_DATA_DIR = 'data/bopae/'
 
 def setup(bot):
-    bot.add_cog(Bopae2(bot))
-
-    # if BOPAE_STATS:
-    #     try:
-    #         from cogs.bopae.parser import *
-    #     except:
-    #         pass
-    # if BOPAE_USERPARSE:
-    #     try:
-    #         from cogs.bopae.statistics import *
-    #     except:
-    #         pass
+    bot.add_cog(Bopae(bot))
 
 
-
-class Bopae2:
+class Bopae:
     """BNS soul shield utils"""
 
     def __init__(self, bot):
         self.bot = bot
-        self.bopaeData = dataIO.load_json("data/bopae/bopae.json")
-        self.allcmds = ["list", "user", "search", "debug"]
 
-    @commands.command()
-    async def bopae2(self, *text):
-        ("BNS soul shield utils\n\n"
-        "Commands:\n"
-        "  (search) [name] [1-8 / all]..  Soul Shield search\n"
-        "  list                           List all available sets\n")
+        self.bopaeData = {}
+        for f in os.listdir(BOPAE_DATA_DIR):
+            if f == "bopae.json":
+                continue        # TODO remove bopae.json
 
-        if not text or text[0] == "help":
-            await self.bot.say("```{}```".format(self.bopaecmd_help()))
+            self.bopaeData.update(dataIO.load_json(BOPAE_DATA_DIR + f))
 
-        elif text[0] == "list":
-            await self.bot.say(self.bopaecmd_list())
 
+    @commands.group(pass_context=True)
+    async def bopae(self, ctx):
+        """BNS soul-shield search and utilities
+        search format: ([set name] [slot num/all]...)...
+        example: !bopae yeti 2 4 ebon all asura 1 3 5
+        """
+
+        text = ctx.message.content.split()
+        if ctx.invoked_subcommand == None and len(text) > 1:
+            search_result = self.bopaecmd_search(text[1::])
+            for page in pagify(search_result, ['\n']):
+                await self.bot.say(box(page))
         else:
-            await self.bot.say("```{}```".format(self.bopaecmd_search(text)))
+            await send_cmd_help(ctx)
 
 
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = COMMAND HANDLERS  = = = = = = = = = = = = = = = = = = = =
+    @bopae2.command(name="list")
+    async def bopaecmd_list(self):
+        """Show SS sets in the database"""
 
-    def bopaecmd_help(self):
-        return ("BNS soul shield utils\n\n"
-        "Commands:\n"
-        "  [name] [1-8 / all]..  Soul Shield search\n"
-        "  list                  List all available sets")
-
-    def bopaecmd_list(self):
         multiline = "Available SS sets:\n{}\n".format(", ".join(map(str, self.bopaeData)))
         # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
         # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
-        return multiline
+        await self.bot.say(multiline)
+
+
 
     def bopaecmd_search(self, text):
         query = self.bopae_parser(text)
@@ -101,21 +90,6 @@ class Bopae2:
             # except:
             #     multiline += "Internal error\n"
         return multiline
-
-
-
-    # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-    # = = = = = = = = = = = = = UTILITIES = = = = = = = = = = = = = = = = = = = = = = = =
-
-    # # name should be valid key
-    # # slot integer in range 1..8
-    # # stat should be valid stat key
-    # def bopae_getdata(self, name, slot, stat):
-    #     """Returns integer given valid request"""
-    #     try:
-    #         return self.bopaeData[name]["slot"+str(slot)][stat]
-    #     except:
-    #         return 0
 
 
     # TODO better exception handling
