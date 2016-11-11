@@ -1,0 +1,83 @@
+{
+    "twisted": {
+        "tags": ["corrupted", "twisted"],
+        "setName": "Twisted",
+        "setNotes": "Comes from various zones: Corrupted Black Spear Tribe (Twisted Grimhorn Wilds) / Ruined City (Zaiwei Ruins) / Battle of the Black Marsh (Gloomdross Incursion) / Silent Pirate Ship (Shattered Masts)",
+        "setBonus": {
+            "3": {
+                "PEN": 104
+            },
+            "5": {
+                "EVA": 314
+            },
+            "8": {
+                "cRate": 188,
+                "PEN": 440
+            }
+        },
+        "slot1": {
+            "HP1": [2500, 3040, 3570],
+            "fusionmax": 183,
+            "stat1": "ACC",
+            "data1": [179, 217, 256],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [88, 110]
+        },
+        "slot2": {
+            "HP1": [4500, 5460, 6430],
+            "fusionmax": 192,
+            "stat1": "HP1",
+            "data1": [92, 115],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [92, 115]
+        },
+        "slot3": {
+            "HP1": [2740, 3320, 3910],
+            "fusionmax": 201,
+            "stat1": "BLK",
+            "data1": [196, 238, 281],
+            "stat2": ["cRate", "ACC", "EVA"],
+            "data2": [96, 120]
+        },
+        "slot4": {
+            "HP1": [2860, 3470, 4420],
+            "fusionmax": 210,
+            "stat1": "EVA",
+            "data1": [205, 249, 294],
+            "stat2": ["cRate", "ACC", "BLK"],
+            "data2": [100, 125]
+        },
+        "slot5": {
+            "HP1": [3090, 3760, 4420],
+            "fusionmax": 227,
+            "stat1": "cRate",
+            "data1": [222, 270, 318],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [108, 136]
+        },
+        "slot6": {
+            "HP1": [3210, 3900, 4590],
+            "fusionmax": 236,
+            "stat1": "ACC",
+            "data1": [231, 280, 330],
+            "stat2": ["cRate", "DEF", "EVA"],
+            "data2": [112, 141]
+        },
+        "slot7": {
+            "HP1": [3330, 4050, 4760],
+            "fusionmax": 244,
+            "stat1": "cRate",
+            "data1": [239, 290, 342],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [116, 146]
+        },
+        "slot8": {
+            "HP1": [3450, 4190, 4930],
+            "fusionmax": 253,
+            "stat1": "cRate",
+            "data1": [248, 301, 355],
+            "stat2": ["ACC", "HP2", "DEF"],
+            "data2": [120, 151, 1200, 1510]
+        }
+    }
+}
