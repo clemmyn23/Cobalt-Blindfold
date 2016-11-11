@@ -42,7 +42,7 @@ class Bopae:
             await send_cmd_help(ctx)
 
 
-    @bopae2.command(name="list")
+    @bopae.command(name="list")
     async def bopaecmd_list(self):
         """Show SS sets in the database"""
 
