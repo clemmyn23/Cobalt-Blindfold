@@ -1,78 +1,76 @@
 {
-    "challenger": {
-        "tags": ["tower", "infinity"],
-        "setName": "Challenger",
-        "setNotes": "Infinity tower F40+",
+    "oblivion": {
+        "tags": ["forgotten", "tomb", "desolate"],
+        "setName": "Oblivion",
+        "setNotes": "Desolate Tomb (forgotten)",
         "setBonus": {
             "3": {
-                "PEN": 480,
-                "CCdmg": 330,
-                "cDef": 490
+                "cDmg": 7
             }
         },
         "slot1": {
-            "HP1": [5530, 6720, 7910],
-            "fusionmax": 232,
-            "stat1": "HP1",
-            "data1": [5530, 6720, 7910],
-            "stat2": ["cRate", "ACC", "DEF"],
-            "data2": [111, 139]
+            "HP1": [2710, 3290, 3870],
+            "fusionmax": 215,
+            "stat1": "ACC",
+            "data1": [210, 255, 301],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [102, 128]
         },
         "slot2": {
-            "HP1": [3420, 4150, 4880],
-            "fusionmax": 243,
-            "stat1": "cRate",
-            "data1": [238, 289, 341],
-            "stat2": ["ACC", "DEF", "BLK"],
-            "data2": [116, 145]
+            "HP1": [5040, 6110, 7200],
+            "fusionmax": 225,
+            "stat1": "HP1",
+            "data1": [5040, 6110, 7200],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [107, 134]
         },
         "slot3": {
-            "HP1": [6060, 7360, 8660],
-            "fusionmax": 254,
-            "stat1": "HP1",
-            "data1": [6060, 7360, 8660],
-            "stat2": ["cRate", "EVA", "BLK"],
-            "data2": [127, 159]
+            "HP1": [2960, 3600, 4230],
+            "fusionmax": 235,
+            "stat1": "BLK",
+            "data1": [230, 279, 329],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [112, 141]
         },
         "slot4": {
-            "HP1": [3730, 4530, 5330],
-            "fusionmax": 265,
-            "stat1": "ACC",
-            "data1": [259, 315, 371],
-            "stat2": ["cRate", "EVA", "BLK"],
-            "data2": [127, 159]
+            "HP1": [3090, 3760, 4420],
+            "fusionmax": 245,
+            "stat1": "EVA",
+            "data1": [240, 291, 343],
+            "stat2": ["cRate", "ACC", "BLK"],
+            "data2": [117, 147]
         },
         "slot5": {
-            "HP1": [6850, 8310, 9790],
-            "fusionmax": 287,
-            "stat1": "HP1",
-            "data1": [6850, 8310, 9790],
-            "stat2": ["cRate", "EVA", "BLK"],
-            "data2": [137, 172]
+            "HP1": [3350, 4070, 4790],
+            "fusionmax": 266,
+            "stat1": "cRate",
+            "data1": [260, 316, 372],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [127, 159]
         },
         "slot6": {
-            "HP1": [4190, 5090, 5990],
-            "fusionmax": 298,
-            "stat1": "DEF",
-            "data1": [291, 354, 417],
-            "stat2": ["cRate", "EVA", "BLK"],
-            "data2": [143, 179]
+            "HP1": [3480, 4230, 4970],
+            "fusionmax": 276,
+            "stat1": "ACC",
+            "data1": [270, 328, 386],
+            "stat2": ["cRate", "DEF", "EVA"],
+            "data2": [132, 165]
         },
         "slot7": {
-            "HP1": [7380, 8960, 10550],
-            "fusionmax": 310,
-            "stat1": "HP1",
-            "data1": [7380, 8960, 10550],
-            "stat2": ["DEF", "EVA", "BLK"],
-            "data2": [148, 185]
+            "HP1": [3610, 4380, 5160],
+            "fusionmax": 286,
+            "stat1": "cRate",
+            "data1": [280, 340, 401],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [136, 171]
         },
         "slot8": {
-            "HP1": [4500, 5470, 6440],
-            "fusionmax": 321,
+            "HP1": [3740, 4540, 5240],
+            "fusionmax": 296,
             "stat1": "cRate",
-            "data1": [314, 381, 449],
-            "stat2": ["ACC", "DEF", "EVA"],
-            "data2": [153, 192]
+            "data1": [290, 352, 415],
+            "stat2": ["ACC", "HP2", "DEF"],
+            "data2": [141, 177, 1410, 1770]
         }
     }
 }
