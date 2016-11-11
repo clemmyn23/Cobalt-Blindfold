@@ -26,20 +26,21 @@ class Bopae:
             self.bopaeData.update(dataIO.load_json(BOPAE_DATA_DIR + f))
 
 
-    @commands.group(pass_context=True)
+    @commands.group(name="bopae", pass_context=True)
     async def bopae(self, ctx):
         """BNS soul-shield search and utilities
         search format: ([set name] [slot num/all]...)...
         example: !bopae yeti 2 4 ebon all asura 1 3 5
         """
 
-        text = ctx.message.content.split()
-        if ctx.invoked_subcommand == None and len(text) > 1:
-            search_result = self.bopaecmd_search(text[1::])
-            for page in pagify(search_result, ['\n']):
-                await self.bot.say(box(page))
-        else:
-            await send_cmd_help(ctx)
+        if ctx.invoked_subcommand is None:
+            text = ctx.message.content.split()
+            if len(text) > 1:
+                search_result = self.bopaecmd_search(text[1::])
+                for page in pagify(search_result, ['\n']):
+                    await self.bot.say(box(page))
+            else:
+                await send_cmd_help(ctx)
 
 
     @bopae.command(name="list")
