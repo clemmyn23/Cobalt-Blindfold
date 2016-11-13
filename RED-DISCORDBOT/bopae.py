@@ -143,7 +143,7 @@ class Bopae:
         if len(query) < 3 or query == "all":
             return ""
 
-        query = re.compile(query)
+        query = re.compile(query, flags=re.IGNORECASE)
         for i in self.bopaeData:
             if query.search(self.bopaeData[i]["setName"].lower()) != None:
                 return i
