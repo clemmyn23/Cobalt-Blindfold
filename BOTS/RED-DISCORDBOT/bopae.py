@@ -5,7 +5,8 @@ from __main__ import send_cmd_help
 
 from .libbopae.main import *
 from .libbopae.utils.chat_formatting import *
-# from .utils.chat_formatting import *
+from cogs.utils import checks
+
 
 """
 ##########################################
@@ -48,12 +49,20 @@ class BopaeRED:
                 await send_cmd_help(ctx)
 
 
+    @bopae.command(name="reload")
+    @checks.is_owner()
+    async def reload(self):
+        """Reload database."""
+        try:
+            self.Bopae.reload()
+            await self.bot.say()
+        except Exception as e:
+            async self.bot.say("{}".format(e))
+
     @bopae.command(name="list")
     async def list(self):
-        """Show SS sets in the database"""
-
+        """Show SS sets in the database."""
         await self.bot.say(self.Bopae.list())
-
 
     @bopae.command(name="search", pass_context=True)
     async def search(self, ctx):
