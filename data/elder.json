@@ -1,0 +1,84 @@
+{
+    "elder": {
+        "tags": ["elder", "Beluga", "Lagoon", "LegendaryPVP"],
+        "setName": "Elder Soul Shield",
+        "setNotes": "Beluga Lagoon & Whirlwind Valley, Legendary PVP Soulshield",
+        "setBonus": {
+            "3": {
+                "Depends on the class": 0
+            },
+            "5": {
+                "ACC": 165,
+                "DEF": 298,
+                "HP1": 15510
+            },
+            "8": {
+                "Depends on the class": 0
+            }
+        },
+        "slot1": {
+            "HP1": [3880, 5550],
+            "fusionmax": 290,
+            "stat1": "cDef",
+            "data1": [284, 406],
+            "stat2": ["ACC", "DEF", "HP2"],
+            "data2": [122, 174, 1590, 2260]
+        },
+        "slot2": {
+            "HP1": [3880, 5810],
+            "fusionmax": 304,
+            "stat1": "HP1",
+            "data1": [3890, 5530],
+            "stat2": ["cDef", "DEF", "ACC"],
+            "data2": [127, 182]
+        },
+        "slot3": {
+            "HP1": [4250, 6070],
+            "fusionmax": 318,
+            "stat1": "ACC",
+            "data1": [311, 445],
+            "stat2": ["cDef", "DEF", "HP2"],
+            "data2": [133, 190, 1730, 2470]
+        },
+        "slot4": {
+            "HP1": [4440, 6340],
+            "fusionmax": 332,
+            "stat1": "cDef",
+            "data1": [325, 465],
+            "stat2": ["cRate", "ACC", "HP2"],
+            "data2": [139, 198, 1810, 2570]
+        },
+        "slot5": {
+            "HP1": [4810, 6870],
+            "fusionmax": 359,
+            "stat1": "HP1",
+            "data1": [4580, 6540],
+            "stat2": ["cRate", "cDef", "ACC"],
+            "data2": [151, 215]
+        },
+        "slot6": {
+            "HP1": [4990, 7130],
+            "fusionmax": 373,
+            "stat1": "EVA",
+            "data1": [366, 523],
+            "stat2": ["cDef", "DEF", "ACC"],
+            "data2": [156, 223]
+        },
+        "slot7": {
+            "HP1": [5180, 7390],
+            "fusionmax": 387,
+            "stat1": "BLK",
+            "data1": [378, 541],
+            "stat2": ["cDef", "ACC", "DEF"],
+            "data2": [161, 232]
+        },
+        "slot8": {
+            "HP1": [5360, 7660],
+            "fusionmax": 401,
+            "stat1": "cDef",
+            "data1": [392, 561],
+            "stat2": ["cRate", "DEF", "HP2"],
+            "data2": [168, 240, 2180, 3120]
+        }
+    }
+}
