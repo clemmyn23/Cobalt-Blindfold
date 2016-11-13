@@ -20,9 +20,6 @@ class Bopae:
 
         self.bopaeData = {}
         for f in os.listdir(BOPAE_DATA_DIR):
-            if f == "bopae.json":
-                continue        # TODO remove bopae.json
-
             self.bopaeData.update(dataIO.load_json(BOPAE_DATA_DIR + f))
 
 
