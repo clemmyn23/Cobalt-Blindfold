@@ -20,9 +20,6 @@ class Bopae:
 
         self.bopaeData = {}
         for f in os.listdir(BOPAE_DATA_DIR):
-            if f == "bopae.json":
-                continue        # TODO remove bopae.json
-
             self.bopaeData.update(dataIO.load_json(BOPAE_DATA_DIR + f))
 
 
@@ -143,7 +140,7 @@ class Bopae:
         if len(query) < 3 or query == "all":
             return ""
 
-        query = re.compile(query)
+        query = re.compile(query, flags=re.IGNORECASE)
         for i in self.bopaeData:
             if query.search(self.bopaeData[i]["setName"].lower()) != None:
                 return i
