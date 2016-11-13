@@ -1,8 +1,5 @@
 import os, re
 
-# from . import chat_formatting
-
-
 class Bopae:
     """BNS soul shield utils"""
 
