@@ -5,6 +5,9 @@ from cogs.utils.dataIO import dataIO
 from __main__ import send_cmd_help
 from .utils.chat_formatting import *
 
+from libbopae.main import *
+
+
 
 BOPAE_DATA_DIR = 'data/bopae/'
 
