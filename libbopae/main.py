@@ -11,8 +11,9 @@ class Bopae:
     # Reloads soul-shield data
     def reload(self):
         self.bopaeData = {}
-        for f in os.listdir(self.data_dir):
-            self.bopaeData.update(json.load(self.data_dir + f))
+        for file in os.listdir(self.data_dir):
+            with open(self.data_dir + file) as f:
+                self.bopaeData.update(json.load(f))
 
 
     # Lists all soul-shield sets in the database
