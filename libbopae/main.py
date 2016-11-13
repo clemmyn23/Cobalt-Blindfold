@@ -32,7 +32,7 @@ class Bopae:
     # return : str
     def search(self, message : str):
         """BNS soul-shield search.
-        
+
         FORMAT:
             !bopae ([set name] [slot num/all]...)...
         EXAMPLES:
@@ -56,7 +56,7 @@ class Bopae:
                             bopaeset, self.bopaeData[bopaeset]["setNotes"])
 
                 multiline += "Set bonus:\n"
-                for i in self.bopaeData[bopaeset]["setBonus"]:
+                for i in sorted(self.bopaeData[bopaeset]["setBonus"]):
                     multiline += "{} set: {}\n".format(i, self.bopaeData[bopaeset]["setBonus"][i])
                 multiline += "\n"
 
@@ -81,7 +81,31 @@ class Bopae:
         return multiline
 
 
+    # soul-shield side-by-side listing
+    # format: !bopae compare [name1] [name2] [slotnum]
+    # message : str
+    # return : str
+    def compare(self, message : str):
+        # Example format
+        # !bopae cmp yeti asura 1
+        # ---------------------------------------------
+        # [SET NAME 1]                        [SET NAME 2]
+        # [NOTES 1]                           [NOTES 2]
+        #
+        # Primary stat:
+        # "ACC": 123                <         "ACC": 234
+        #
+        # Secondary stats:
+        # "cRate": 234              =         "cRate": 234
+        # "DEF": 234                >         "DEF": 123
+        # "EVA": 234
+        #                                     "BLK": 345
+        #
+        # "fusionmax": 234          >         "fusionmax": 230
+        #
 
+        multiline = "- bopae compare currently under construction -"
+        return multiline
 
 
     # TODO better exception handling
