@@ -1,12 +1,10 @@
 import os, re, asyncio
 import discord
 from discord.ext import commands
-from cogs.utils.dataIO import dataIO
 from __main__ import send_cmd_help
 
-
-from libbopae.main import *
-from libbopae.utils.chat_formatting import *
+from .libbopae.main import *
+from .libbopae.utils.chat_formatting import *
 # from .utils.chat_formatting import *
 
 """
@@ -14,7 +12,6 @@ from libbopae.utils.chat_formatting import *
     THIS FILE IS FOR RED-DISCORDBOT
 ##########################################
 """
-
 
 BOPAE_DATA_DIR = 'data/bopae/'
 

@@ -1,4 +1,4 @@
-import os, re
+import os, re, json
 
 class Bopae:
     """BNS soul shield utils"""
@@ -12,7 +12,7 @@ class Bopae:
     def reload(self):
         self.bopaeData = {}
         for f in os.listdir(self.data_dir):
-            self.bopaeData.update(dataIO.load_json(self.data_dir + f))
+            self.bopaeData.update(json.load(self.data_dir + f))
 
 
     # Lists all soul-shield sets in the database
