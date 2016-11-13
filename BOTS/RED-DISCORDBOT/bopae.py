@@ -30,17 +30,18 @@ class BopaeRED:
     @commands.group(name="bopae", pass_context=True)
     async def bopae(self, ctx):
         """BNS soul-shield search.
+
         FORMAT:
             !bopae ([set name] [slot num/all]...)...
         EXAMPLES:
             !bopae tomb 1
             !bopae yeti 2 4 ebon all asura 1 3 5
+
         """
 
         if ctx.invoked_subcommand is None:
             if len(ctx.message.content.split()) > 1:
                 search_result = self.Bopae.search(ctx.message.content)
-
                 for page in pagify(search_result, ['\n']):
                     await self.bot.say(box(page))
             else:
@@ -52,3 +53,15 @@ class BopaeRED:
         """Show SS sets in the database"""
 
         await self.bot.say(self.Bopae.list())
+
+
+    @bopae.command(name="search", pass_context=True)
+    async def search(self, ctx):
+        """BNS soul-shield search."""
+
+        if len(ctx.message.content.split()) > 2:
+            search_result = self.Bopae.search(ctx.message.content)
+            for page in pagify(search_result, ['\n']):
+                await self.bot.say(box(page))
+        else:
+            await send_cmd_help(ctx)

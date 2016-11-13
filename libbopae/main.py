@@ -32,6 +32,7 @@ class Bopae:
     # return : str
     def search(self, message : str):
         """BNS soul-shield search.
+        
         FORMAT:
             !bopae ([set name] [slot num/all]...)...
         EXAMPLES:
@@ -40,6 +41,9 @@ class Bopae:
         """
 
         query = self._parser(message.split()[1::])
+        if query[0].lower() == "search":
+            query = query[1::]
+
         multiline = query["multiline"] + "\n"
         del query["multiline"]
 
