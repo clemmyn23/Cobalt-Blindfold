@@ -1,18 +1,11 @@
-import os, re, asyncio
+import asyncio
 import discord
 from discord.ext import commands
 from __main__ import send_cmd_help
-
+from cogs.utils import checks
 from .libbopae.main import *
 from .libbopae.utils.chat_formatting import *
-from cogs.utils import checks
 
-
-"""
-##########################################
-    THIS FILE IS FOR RED-DISCORDBOT
-##########################################
-"""
 
 BOPAE_DATA_DIR = 'data/bopae/'
 
@@ -55,7 +48,7 @@ class BopaeRED:
         """Reload database."""
         try:
             self.Bopae.reload()
-            await self.bot.say()
+            await self.bot.say("bopae db reloaded")
         except Exception as e:
             async self.bot.say("{}".format(e))
 
