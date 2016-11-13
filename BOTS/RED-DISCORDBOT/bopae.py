@@ -50,7 +50,7 @@ class BopaeRED:
             self.Bopae.reload()
             await self.bot.say("bopae db reloaded")
         except Exception as e:
-            async self.bot.say("{}".format(e))
+            await self.bot.say("{}".format(e))
 
     @bopae.command(name="list")
     async def list(self):

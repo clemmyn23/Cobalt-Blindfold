@@ -1,0 +1,84 @@
+{
+    "midnight": {
+        "tags": ["midnight", "skypetal", "legendaryPVE"],
+        "setName": "Midnight-Skypetal Soul Shield",
+        "setNotes": "Midnight Skypetal Plains Legendary Soulshield",
+        "setBonus": {
+            "3": {
+                "Depends on the class": 0
+            },
+            "5": {
+                "HP1": 23000,
+                "AP": 10,
+                "cDmg": 15
+            },
+            "8": {
+                "Depends on the class": 0
+            }
+        },
+        "slot1": {
+            "HP1": [3250, 4640],
+            "fusionmax": 268,
+            "stat1": "ACC",
+            "data1": [263, 376],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [112, 160]
+        },
+        "slot2": {
+            "HP1": [3560, 5080],
+            "fusionmax": 281,
+            "stat1": "HP2",
+            "data1": [2750, 3930],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [118, 168]
+        },
+        "slot3": {
+            "HP1": [3560, 5080],
+            "fusionmax": 294,
+            "stat1": "BLK",
+            "data1": [287, 411],
+            "stat2": ["cRate", "ACC", "EVA"],
+            "data2": [123, 176]
+        },
+        "slot4": {
+            "HP1": [3710, 5300],
+            "fusionmax": 307,
+            "stat1": "EVA",
+            "data1": [301, 430],
+            "stat2": ["cRate", "ACC", "BLK"],
+            "data2": [128, 183]
+        },
+        "slot5": {
+            "HP1": [4020, 5750],
+            "fusionmax": 332,
+            "stat1": "cRate",
+            "data1": [325, 465],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [139, 199]
+        },
+        "slot6": {
+            "HP1": [4180, 5970],
+            "fusionmax": 345,
+            "stat1": "ACC",
+            "data1": [338, 483],
+            "stat2": ["cRate", "DEF", "EVA"],
+            "data2": [144, 206]
+        },
+        "slot7": {
+            "HP1": [4330, 6190],
+            "fusionmax": 358,
+            "stat1": "cRate",
+            "data1": [350, 501],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [150, 214]
+        },
+        "slot8": {
+            "HP1": [4490, 6410],
+            "fusionmax": 370,
+            "stat1": "cRate",
+            "data1": [362, 501],
+            "stat2": ["HP2", "ACC", "DEF"],
+            "data2": [155, 222, 1550, 2220]
+        }
+    }
+}
