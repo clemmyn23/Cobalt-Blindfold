@@ -1,58 +1,49 @@
-import os, re, asyncio
-import discord
-from discord.ext import commands
-from cogs.utils.dataIO import dataIO
-from __main__ import send_cmd_help
-from .utils.chat_formatting import *
-
-
-BOPAE_DATA_DIR = 'data/bopae/'
-
-def setup(bot):
-    bot.add_cog(Bopae(bot))
-
+import os, re, json
 
 class Bopae:
     """BNS soul shield utils"""
 
-    def __init__(self, bot):
-        self.bot = bot
-
+    def __init__(self, data_dir : str):
         self.bopaeData = {}
-        for f in os.listdir(BOPAE_DATA_DIR):
-            self.bopaeData.update(dataIO.load_json(BOPAE_DATA_DIR + f))
+        self.data_dir = data_dir
+        self.reload()
+
+    # Reloads soul-shield data
+    def reload(self):
+        self.bopaeData = {}
+        for file in os.listdir(self.data_dir):
+            with open(self.data_dir + file) as f:
+                self.bopaeData.update(json.load(f))
 
 
-    @commands.group(name="bopae", pass_context=True)
-    async def bopae(self, ctx):
-        """BNS soul-shield search and utilities
-        search format: ([set name] [slot num/all]...)...
-        example: !bopae yeti 2 4 ebon all asura 1 3 5
-        """
-
-        if ctx.invoked_subcommand is None:
-            text = ctx.message.content.split()
-            if len(text) > 1:
-                search_result = self.bopaecmd_search(text[1::])
-                for page in pagify(search_result, ['\n']):
-                    await self.bot.say(box(page))
-            else:
-                await send_cmd_help(ctx)
-
-
-    @bopae.command(name="list")
-    async def bopaecmd_list(self):
+    # Lists all soul-shield sets in the database
+    # return : str
+    def list(self):
         """Show SS sets in the database"""
 
         multiline = "Available SS sets:\n{}\n".format(", ".join(map(str, self.bopaeData)))
         # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
         # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
-        await self.bot.say(multiline)
+        return multiline
 
 
+    # soul-shield search.
+    # message : str
+    # return : str
+    def search(self, message : str):
+        """BNS soul-shield search.
+        
+        FORMAT:
+            !bopae ([set name] [slot num/all]...)...
+        EXAMPLES:
+            !bopae tomb 1
+            !bopae yeti 2 4 ebon all asura 1 3 5
+        """
 
-    def bopaecmd_search(self, text):
-        query = self.bopae_parser(text)
+        query = self._parser(message.split()[1::])
+        if query[0].lower() == "search":
+            query = query[1::]
+
         multiline = query["multiline"] + "\n"
         del query["multiline"]
 
@@ -90,14 +81,17 @@ class Bopae:
         return multiline
 
 
+
+
+
     # TODO better exception handling
     # takes in text:list. returns dictionary key:setname, value:list integer slots
     # multiline in dict: multiline string of errors. "" on empty
-    def bopae_parser(self, text):
+    def _parser(self, text):
         currset = ()
         query = {"multiline": ""}
         for i in text:
-            name = self.bopae_namesearch(i)
+            name = self._namesearch(i)
             if name == "":
                 if i == "all" and currset != ():
                     query[currset] = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -128,7 +122,7 @@ class Bopae:
         return query
 
 
-    def bopae_namesearch(self, query):
+    def _namesearch(self, query):
         """Searches the corresponding object key given query"""
         if query == ():
             return ""
