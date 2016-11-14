@@ -67,7 +67,7 @@ class BopaeRED:
         else:
             await send_cmd_help(ctx)
 
-    @bopae.command(name="compare", aliases=["cmp"])
+    @bopae.command(name="compare", aliases=["cmp"], pass_context=True)
     async def compare(self, ctx):
         """BNS soul-shield compare.
         FORMAT: !bopae compare/cmp [name1] [name2] [slot#]
