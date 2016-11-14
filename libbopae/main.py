@@ -106,13 +106,14 @@ class Bopae:
         #                             "BLK": 345
         #
 
+        # INPUT CHECKS AND EXIT
         multiline = ''
         message = message.split()[2::]
+        if len(message) < 3:
+            return 'USAGE: `!bopae [compare/cmp] [name1] [name2] [slot#]`'
         key1 = self._namesearch(message[0])
         key2 = self._namesearch(message[1])
         slot = message[2]
-
-        # INPUT CHECKS AND EXIT
         if key1 == '':
             multiline += "invalid set name [{}]\n".format(message[0])
         if key2 == '':
@@ -122,9 +123,9 @@ class Bopae:
             if slot < 0 or slot > 8:
                 raise
         except:
-            multiline += "invalid slot num [{}] {}\n".format(message[2])
+            multiline += "invalid slot num [{}]\n".format(message[2])
         if multiline != '':
-            return multiline
+            return multiline + 'USAGE: `!bopae [compare/cmp] [name1] [name2] [slot#]`'
 
         # SET NAMES
         multiline = "# # # # # # # # # #\n"
@@ -220,9 +221,9 @@ class Bopae:
         for i in piece2['stat2']:
             if i not in piece1['stat2']:
                 if i == 'HP2':
-                    multiline += '{}{}: {}'.format(' '*29, i, piece2['data2'][2:4])
+                    multiline += '{}{}: {}\n'.format(' '*29, i, piece2['data2'][2:4])
                 else:
-                    multiline += '{}{}: {}'.format(' '*29, i, piece2['data2'][0:2])
+                    multiline += '{}{}: {}\n'.format(' '*29, i, piece2['data2'][0:2])
 
         return multiline
 
