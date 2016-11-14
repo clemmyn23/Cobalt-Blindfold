@@ -60,9 +60,20 @@ class BopaeRED:
     @bopae.command(name="search", pass_context=True)
     async def search(self, ctx):
         """BNS soul-shield search."""
-
         if len(ctx.message.content.split()) > 2:
             search_result = self.Bopae.search(ctx.message.content)
+            for page in pagify(search_result, ['\n']):
+                await self.bot.say(box(page))
+        else:
+            await send_cmd_help(ctx)
+
+    @bopae.command(name="compare", aliases=["cmp"])
+    async def compare(self, ctx):
+        """BNS soul-shield compare.
+        FORMAT: !bopae compare/cmp [name1] [name2] [slot#]
+        """
+        if len(ctx.message.content.split()) > 2:
+            search_result = self.Bopae.compare(ctx.message.content)
             for page in pagify(search_result, ['\n']):
                 await self.bot.say(box(page))
         else:
