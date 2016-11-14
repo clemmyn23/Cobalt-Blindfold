@@ -1,0 +1,82 @@
+{
+    "undy": {
+        "tags": ["undywear", "b00sted", "boosted"],
+        "setName": "undywear the b00sted assassin",
+        "setNotes": "I will totally be beaten",
+        "setBonus": {
+            "3": {
+                "b00sted": 3000
+            },
+            "5": {
+                "carried": 3000
+            },
+            "8": {
+                "whale": 5000
+            }
+        },
+        "slot1": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        },
+        "slot2": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        },
+        "slot3": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        },
+        "slot4": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        },
+        "slot5": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        },
+        "slot6": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        },
+        "slot7": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        },
+        "slot8": {
+            "HP1": [9001, 9002],
+            "fusionmax": 1234,
+            "stat1": "b00sted",
+            "data1": [9003, 9004],
+            "stat2": ["carried", "whale", "tears"],
+            "data2": [9001, 9002]
+        }
+    }
+}
