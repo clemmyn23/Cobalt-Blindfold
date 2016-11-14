@@ -1,7 +1,7 @@
 {
-    "moonnight": {
+    "moonlight": {
         "tags": ["moonlight", "longgui", "midnight", "skypetal", "plains", "legendaryPVE"],
-        "setName": "Moonlight Soul Shield",
+        "setName": "Moonlight",
         "setNotes": "Sacred Longgui Legendary Soulshield from Midnight Skypetal Plains",
         "setBonus": {
             "3": {
