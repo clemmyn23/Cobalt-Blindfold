@@ -19,13 +19,14 @@ whichever ss stats you query for.
 #### Red-DiscordBot:  
 1. Copy `/BOTS/RED-DISCORDBOT/bopae.py` into `~RED-DISCORDBOT/cogs/bopae.py`  
 2. Copy `/data/*` into `~RED-DISCORDBOT/data/bopae/`  
+3. Run `!load bopae` or `!reload bopae` (may have to restart Red if you updated `libbopae/`)
+4. Run `!bopae` for help
 
 #### BASEDBOT:  
 1. - TODO -
-2. - TODO -
+
 
 ## TODO:  
 - redesign search to account for class specific soul shields
 - profile parser
 - statistics and analysis?
-- data entry for midnight skypetal
