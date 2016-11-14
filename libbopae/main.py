@@ -40,9 +40,10 @@ class Bopae:
             !bopae yeti 2 4 ebon all asura 1 3 5
         """
 
-        query = self._parser(message.split()[1::])
+        query = message.split()
         if query[0].lower() == "search":
             query = query[1::]
+        query = self._parser(message.split()[1::])
 
         multiline = query["multiline"] + "\n"
         del query["multiline"]
