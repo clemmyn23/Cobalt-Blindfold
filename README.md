@@ -6,8 +6,9 @@ whichever ss stats you query for.
 
 
 ## Credits:
-[chibi_prae](https://twitter.com/chibi_prae) for [bopae cheatsheet](https://docs.google.com/spreadsheets/d/1JOQK34BUTR_55XwnbJOk388gjokrtLZFdhi3vIwXjZc)
+* [chibi_prae](https://twitter.com/chibi_prae) for [bopae cheatsheet](https://docs.google.com/spreadsheets/d/1JOQK34BUTR_55XwnbJOk388gjokrtLZFdhi3vIwXjZc)
 ([webview](https://docs.google.com/spreadsheets/d/1JOQK34BUTR_55XwnbJOk388gjokrtLZFdhi3vIwXjZc/htmlview?sle=true#))
+* [new sheet](https://docs.google.com/spreadsheets/d/1v0tY9qwTmQalLrD0FW2LkX2AJWqEKKSrBz5Ij4WvRXo/htmlview?sle=true#gid=0)
 
 
 ## Dependencies:  
