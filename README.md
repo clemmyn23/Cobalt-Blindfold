@@ -1,4 +1,4 @@
-# Cobolt-Blindfold
+# Cobalt-Blindfold
 Soul-shields data and utilities for Blade and Soul game.  
 
 Add it as a module for your discord bot of choice, and it'll list  
