@@ -15,6 +15,13 @@ whichever ss stats you query for.
 * [Red-DiscordBot](https://github.com/Twentysix26/Red-DiscordBot) or whichever bot
 * BeautifulSoup4 for web parsing components (currently disabled)
 
+## Commands:
+* `!bopae` or `!bopae search`
+* `!bopae list`
+* `!bopae compare`
+* `!bopae reload`
+* and maybe more. 
+
 
 ## Install:  
 #### Red-DiscordBot:  
