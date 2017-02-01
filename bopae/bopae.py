@@ -1,16 +1,15 @@
 import asyncio
 import discord
+import re, json, os
 from discord.ext import commands
 from __main__ import send_cmd_help
 from cogs.utils import checks
-
-import re, json
 
 
 BOPAE_DATA_DIR = 'data/bopae/'
 
 def setup(bot):
-    bot.add_cog(BopaeRED(bot))
+    bot.add_cog(Bopae(bot))
 
 
 class Bopae:
@@ -18,9 +17,12 @@ class Bopae:
 
     def __init__(self, bot):
         self.bot = bot
+        self.data_dir = BOPAE_DATA_DIR
 
         self.bopaeData = {}
-        self.data_dir = BOPAE_DATA_DIR
+        # for file in os.listdir(self.data_dir):
+        #     with open(self.data_dir + file) as f:
+        #         self.bopaeData.update(json.load(f))
         self.reload()
 
     @commands.group(name="bopae", pass_context=True)
@@ -37,40 +39,31 @@ class Bopae:
 
         if ctx.invoked_subcommand is None:
             if len(ctx.message.content.split()) > 1:
-                search_result = self.Bopae.search(ctx.message.content)
-                for page in pagify(search_result, ['\n']):
-                    await self.bot.say(box(page))
+
+                await self.search(ctx)
+                # for page in pagify(search_result, ['\n']):
+                #     await self.bot.say(box(page))
             else:
                 await send_cmd_help(ctx)
 
 
 
     # Reloads soul-shield data
-    @bopae.command(name="reload")
-    @checks.is_owner()
+    # @bopae.command(name="reload")
+    # @checks.is_owner()
     def reload(self):
         """Reload database."""
         self.bopaeData = {}
         for file in os.listdir(self.data_dir):
             with open(self.data_dir + file) as f:
                 self.bopaeData.update(json.load(f))
-        await self.bot.say("bopae db reloaded")
+        # await self.bot.say("bopae db reloaded")
 
 
     @bopae.group(name="config", pass_context=True)
     async def config(self, ctx):
         return
 
-
-    @bopae.command(name="reload")
-    @checks.is_owner()
-    async def reload(self):
-        """Reload database."""
-        try:
-            self.Bopae.reload()
-            await self.bot.say("bopae db reloaded")
-        except Exception as e:
-            await self.bot.say("{}".format(e))
 
     @bopae.command(name="list")
     async def list(self):
@@ -84,60 +77,77 @@ class Bopae:
     async def search(self, ctx):
         """BNS soul-shield search."""
 
-        # TODO use embed
-        # title setName
-        # inline piece stats
-        # - title: primary stat
-        # - content1: secondary stats
-        # - content2: fusionmax
-        # inline image
-
-
-        if len(ctx.message.content.split()) > 2:
-            query = message.split()
-            if query[0].lower() == "search":
-                query = query[1::]
-            query = self._parser(message.split()[1::])
-
-            multiline = query["multiline"] + "\n"
-            del query["multiline"]
-
-            for bopaeset in query:
-                multiline += ("# # # # # # # # # #\n"
-                            "Set name: {} [{}]\n"
-                            "Notes: {}\n"
-                            "\n").format(self.bopaeData[bopaeset]["setName"],
-                            bopaeset, self.bopaeData[bopaeset]["setNotes"])
-
-                multiline += "Set bonus:\n"
-                for i in sorted(self.bopaeData[bopaeset]["setBonus"]):
-                    multiline += "{} set: {}\n".format(i, self.bopaeData[bopaeset]["setBonus"][i])
-                multiline += "\n"
-
-                for reqSlot in query[bopaeset]:
-                    reqBopae = self.bopaeData[bopaeset]["slot"+str(reqSlot)]
-                    multiline += (
-                        "Slot {}\n"
-                        "HP1: {}\n"
-                        "Fusion max: {}\n"
-                        "Primary stat: {} {}\n"
-                        "Secondary stats: {} {}\n"
-                        "\n"
-                        ).format(reqSlot,
-                        reqBopae["HP1"], reqBopae["fusionmax"],
-                        reqBopae["stat1"], reqBopae["data1"],
-                        reqBopae["stat2"], reqBopae["data2"]
-                        )
-
-                multiline += "\n"
-
-        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-            search_result = multiline
-
-            for page in pagify(search_result, ['\n']):
-                await self.bot.say(box(page))
-        else:
+        if len(ctx.message.content.split()) <= 2:
             await send_cmd_help(ctx)
+            return
+
+        # passes params into _parser() for parsing
+        # returns dictionary
+        # e.g.:
+        # { "errormsg": "some error messages",
+        #   "yeti": [ 1, 2, 3 ],
+        #   "asura": [ 4, 5 ]
+        # }
+        #
+
+        query = ctx.message.content.split()
+        query = query[1::]                  # chops the "!bopae"
+        if query[0].lower() == "search":    # chops the "!bopae search"
+            query = query[1::]
+        query = self._parser(query)         # parse the query
+
+        if query["errormsg"]:
+            await self.bot.send("{}\n".format(query["errormsg"]))
+        del query["errormsg"]
+
+
+        for bopaeset in query:
+            if len(query[bopaeset]) == 0:
+                # TODO print set stats and bonuses
+                await self.bot.say('TODO: set bonuses and shield info goes here')
+                # multiline += "Set bonus:\n"
+                # for i in sorted(self.bopaeData[bopaeset]["setBonus"]):
+                #     multiline += "{} set: {}\n".format(i, self.bopaeData[bopaeset]["setBonus"][i])
+                # multiline += "\n"
+                # multiline += ("# # # # # # # # # #\n"
+                #             "Set name: {} [{}]\n"
+                #             "Notes: {}\n"
+                #             "\n").format(self.bopaeData[bopaeset]["setName"],
+                #             bopaeset, self.bopaeData[bopaeset]["setNotes"])
+                continue
+
+            for slotNum in query[bopaeset]:
+                reqBopae = self.bopaeData[bopaeset]
+                reqPiece = self.bopaeData[bopaeset]["slot"+str(slotNum)]
+
+                embed = discord.Embed()
+                try:
+                    if reqBopae['rarity'].lower() == 'purple':
+                        embed.colour = discord.Colour(value=123)
+                    elif reqBopae['rarity'].lower() == 'gold':
+                        embed.colour = discord.Colour(value=123)
+                    else:
+                        embed.colour = discord.Colour(value=123)
+
+                except KeyError:  # TODO test this
+                    embed.colour = discord.Colour(value=123)
+
+                # embed.title = "{} - Slot {}".format(reqBopae['setName'], slotNum)
+                embed.description = 'piece description here'
+                embed.add_field(name='HP1_stat', value=reqPiece['HP1'])
+                embed.add_field(name='primary_stat_name {}'.format(reqPiece['stat1']), value='{}'.format(reqPiece['data1']))
+                embed.add_field(name='secondary_stat_names', value='valueshere')
+                embed.add_field(name='fusionmax', value='valueshere')
+                try:
+                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
+                    embed.set_thumbnail(url=reqBopae['imageUrl'])
+                except KeyError:
+                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
+
+                await self.bot.say(embed=embed)
+
+
+
 
     @bopae.command(name="compare", aliases=["cmp"], pass_context=True)
     async def compare(self, ctx):
@@ -159,10 +169,10 @@ class Bopae:
 
     # TODO better exception handling
     # takes in text:list. returns dictionary key:setName, value:list integer slots
-    # multiline in dict: multiline string of errors. "" on empty
+    # errormsg in dict: errormsg string of errors. "" on empty
     def _parser(self, text):
         currset = ()
-        query = {"multiline": ""}
+        query = {"errormsg": ""}
         for i in text:
             name = self._namesearch(i)
             if name == "":
@@ -175,7 +185,7 @@ class Bopae:
                         if currset == ():
                             raise Exception('Attempted to assign soulshield slot to empty set')
                         if i < 1 or i > 8:
-                            raise Exception('Invalid soul shield slot')
+                            raise Exception('Invalid soul shield slot') # TODO ValueError
 
                         if currset not in query:
                             query[currset] = list()
@@ -184,9 +194,9 @@ class Bopae:
                             query[currset].append(i)
                     except:
                         if currset == ():
-                            query["multiline"] += "Invalid set name [{}]\n".format(i)
+                            query["errormsg"] += "Invalid set name [{}]\n".format(i)
                         else:
-                            query["multiline"] += "Invalid slot num [{}] for set [{}]\n".format(i, currset)
+                            query["errormsg"] += "Invalid slot num [{}] for set [{}]\n".format(i, currset)
             else:
                 if name not in query:
                     query[name] = list()

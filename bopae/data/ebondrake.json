@@ -4,6 +4,7 @@
         "setName": "Ebondrake Citadel",
         "setNotes": "stealth stealth",
         "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_heukryong_extra_pos1.png",
+        "rarity": "purple",
         "setBonus": {
             "3": {
                 "AP": 7
