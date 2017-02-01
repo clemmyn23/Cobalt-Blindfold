@@ -60,10 +60,6 @@ class Bopae:
     async def _search(self, ctx:discord.ext.commands.Context):
         """BNS soul-shield search."""
 
-        if len(ctx.message.content.split()) <= 2:
-            await send_cmd_help(ctx)
-            return
-
         # passes params into _parser() for parsing
         # returns dictionary
         # e.g.:
@@ -73,10 +69,19 @@ class Bopae:
         # }
         #
 
+
         query = ctx.message.content.split()
+        if len(query) <= 1:     # TODO better input handling
+            await send_cmd_help(ctx)
+            return
         query = query[1::]                  # chops the "!bopae"
         if query[0].lower() == "search":    # chops the "!bopae search"
             query = query[1::]
+
+        if len(query) <= 1:
+            await send_cmd_help(ctx)
+            return
+
         query = self._parser(query)         # parse the query
 
         if query["errormsg"]:
