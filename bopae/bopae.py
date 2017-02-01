@@ -18,12 +18,11 @@ class Bopae:
     def __init__(self, bot):
         self.bot = bot
         self.data_dir = BOPAE_DATA_DIR
-
         self.bopaeData = {}
-        # for file in os.listdir(self.data_dir):
-        #     with open(self.data_dir + file) as f:
-        #         self.bopaeData.update(json.load(f))
-        self.reload()
+        for file in os.listdir(self.data_dir):
+            with open(self.data_dir + file) as f:
+                self.bopaeData.update(json.load(f))
+
 
     @commands.group(name="bopae", pass_context=True)
     async def bopae(self, ctx):
@@ -39,42 +38,26 @@ class Bopae:
 
         if ctx.invoked_subcommand is None:
             if len(ctx.message.content.split()) > 1:
-
-                await self.search(ctx)
-                # for page in pagify(search_result, ['\n']):
-                #     await self.bot.say(box(page))
+                await self._search(ctx)
             else:
                 await send_cmd_help(ctx)
 
 
-
-    # Reloads soul-shield data
-    # @bopae.command(name="reload")
-    # @checks.is_owner()
-    def reload(self):
-        """Reload database."""
-        self.bopaeData = {}
-        for file in os.listdir(self.data_dir):
-            with open(self.data_dir + file) as f:
-                self.bopaeData.update(json.load(f))
-        # await self.bot.say("bopae db reloaded")
-
-
-    @bopae.group(name="config", pass_context=True)
-    async def config(self, ctx):
-        return
-
-
     @bopae.command(name="list")
     async def list(self):
+        await self._list()
+    async def _list(self):
         """Show SS sets in the database"""
         multiline = "Available SS sets:\n{}\n".format(", ".join(map(str, self.bopaeData)))
         # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
         # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
-        return multiline
+        await self.bot.say(multiline)
+
 
     @bopae.command(name="search", pass_context=True)
     async def search(self, ctx):
+        await self._search(ctx)
+    async def _search(self, ctx:discord.ext.commands.Context):
         """BNS soul-shield search."""
 
         if len(ctx.message.content.split()) <= 2:
@@ -97,7 +80,7 @@ class Bopae:
         query = self._parser(query)         # parse the query
 
         if query["errormsg"]:
-            await self.bot.send("{}\n".format(query["errormsg"]))
+            await self.bot.say("{}\n".format(query["errormsg"]))
         del query["errormsg"]
 
 
@@ -105,15 +88,6 @@ class Bopae:
             if len(query[bopaeset]) == 0:
                 # TODO print set stats and bonuses
                 await self.bot.say('TODO: set bonuses and shield info goes here')
-                # multiline += "Set bonus:\n"
-                # for i in sorted(self.bopaeData[bopaeset]["setBonus"]):
-                #     multiline += "{} set: {}\n".format(i, self.bopaeData[bopaeset]["setBonus"][i])
-                # multiline += "\n"
-                # multiline += ("# # # # # # # # # #\n"
-                #             "Set name: {} [{}]\n"
-                #             "Notes: {}\n"
-                #             "\n").format(self.bopaeData[bopaeset]["setName"],
-                #             bopaeset, self.bopaeData[bopaeset]["setNotes"])
                 continue
 
             for slotNum in query[bopaeset]:
@@ -125,12 +99,12 @@ class Bopae:
                     if reqBopae['rarity'].lower() == 'purple':
                         embed.colour = discord.Colour(value=123)
                     elif reqBopae['rarity'].lower() == 'gold':
-                        embed.colour = discord.Colour(value=123)
+                        embed.colour = discord.Colour(value=456)
                     else:
-                        embed.colour = discord.Colour(value=123)
-
-                except KeyError:  # TODO test this
-                    embed.colour = discord.Colour(value=123)
+                        embed.colour = discord.Colour(value=789)
+                except KeyError:
+                    await self.bot.say("DEBUG: no rarity field in json")
+                    embed.colour = discord.Colour(value=678)
 
                 # embed.title = "{} - Slot {}".format(reqBopae['setName'], slotNum)
                 embed.description = 'piece description here'
@@ -140,8 +114,10 @@ class Bopae:
                 embed.add_field(name='fusionmax', value='valueshere')
                 try:
                     embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
-                    embed.set_thumbnail(url=reqBopae['imageUrl'])
+                    imageUrl = reqBopae['imageUrl'][:-5] + str(slotNum) + '.png'
+                    embed.set_thumbnail(url=imageUrl)
                 except KeyError:
+                    await self.bot.say('DEBUG: no imageUrl field in json')
                     embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
 
                 await self.bot.say(embed=embed)
@@ -185,7 +161,7 @@ class Bopae:
                         if currset == ():
                             raise Exception('Attempted to assign soulshield slot to empty set')
                         if i < 1 or i > 8:
-                            raise Exception('Invalid soul shield slot') # TODO ValueError
+                            raise ValueError('Invalid soul shield slot')
 
                         if currset not in query:
                             query[currset] = list()
