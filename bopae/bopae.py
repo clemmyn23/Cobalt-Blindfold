@@ -4,6 +4,7 @@ import re, json, os
 from discord.ext import commands
 from __main__ import send_cmd_help
 from cogs.utils import checks
+from .utils.chat_formatting import *
 
 
 BOPAE_DATA_DIR = 'data/bopae/'
@@ -61,15 +62,6 @@ class Bopae:
         await self._search(ctx)
     async def _search(self, ctx:discord.ext.commands.Context):
 
-        # passes params into _parser() for parsing
-        # returns dictionary
-        # e.g.:
-        # { "errormsg": "some error messages",
-        #   "yeti": [ 1, 2, 3 ],
-        #   "asura": [ 4, 5 ]
-        # }
-        #
-
         # pre: '!bopae ' is guaranteed by discord.ext.commands method decorator
         query = ctx.message.content.split()
         query = query[1::]                  # chops the "!bopae"
@@ -82,10 +74,16 @@ class Bopae:
             await send_cmd_help(ctx)
             return
 
-        query = self._parser(query)         # parse the query
-
+        # _parser() returns py dict
+        # e.g.:
+        # { "errormsg": "some error messages",
+        #   "yeti": [ 1, 2, 3 ],
+        #   "asura": [ 4, 5 ]
+        # }
+        query = self._parser(query)
         if query["errormsg"]:
-            await self.bot.say("{}\n".format(query["errormsg"]))
+            errors = '\n'.join([ warning(i) for i in query['errormsg'] ])
+            await self.bot.say(errors)
         del query["errormsg"]
 
         for bopaeset in query:
@@ -206,7 +204,7 @@ class Bopae:
     # errormsg in dict: errormsg string of errors. "" on empty
     def _parser(self, text):
         currset = ()
-        query = {"errormsg": ""}
+        query = {"errormsg": []}
         for i in text:
             name = self._namesearch(i)
             if name == "":
@@ -228,9 +226,9 @@ class Bopae:
                             query[currset].append(i)
                     except:
                         if currset == ():
-                            query["errormsg"] += "Invalid set name [{}]\n".format(i)
+                            query["errormsg"].append("Invalid set name [{}]".format(i) )
                         else:
-                            query["errormsg"] += "Invalid slot num [{}] for set [{}]\n".format(i, currset)
+                            query["errormsg"].append("Invalid slot num [{}] for set [{}]".format(i, currset))
             else:
                 if name not in query:
                     query[name] = list()
