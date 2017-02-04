@@ -70,18 +70,15 @@ class Bopae:
         # }
         #
 
-
-        query = ctx.message.content.split()
         # pre: '!bopae ' is guaranteed by discord.ext.commands method decorator
-
-        if len(query) <= 1:     # TODO better input handling
+        query = ctx.message.content.split()
+        query = query[1::]                  # chops the "!bopae"
+        if len(query) == 0:                 # no bopae set specified. send help
             await send_cmd_help(ctx)
             return
-        query = query[1::]                  # chops the "!bopae"
         if query[0].lower() == "search":    # chops the "!bopae search"
             query = query[1::]
-
-        if len(query) <= 1:
+        if len(query) == 0:                 # no bopae set specified. send help
             await send_cmd_help(ctx)
             return
 
@@ -92,24 +89,34 @@ class Bopae:
         del query["errormsg"]
 
         for bopaeset in query:
+
             if len(query[bopaeset]) == 0:
-
-                await self.bot.say('TODO: set bonuses and shield info goes here')
-                continue
-                # TODO print set stats and bonuses
-                # embed. no inlines.
-                # name/ title/ author
-                # description. details. obtain methods
-                # 3 set bonuses
-                # 5 set bonuses
-                # 8/full set bonuses
-
-            for slotNum in query[bopaeset]:
                 reqBopae = self.bopaeData[bopaeset]
-                reqPiece = self.bopaeData[bopaeset]["slot"+str(slotNum)]
-
                 embed = discord.Embed()
 
+                # Title
+                try:
+                    embed.set_author(name=reqBopae['setName'])
+                    imageUrl = reqBopae['imageUrl']         # use default image
+                    print(imageUrl)
+                    embed.set_thumbnail(url=imageUrl)
+                except KeyError:
+                    await self.bot.say('DEBUG: no imageUrl field in json')
+                    embed.set_author(name=reqBopae['setName'])
+
+                # Description and Set Bonuses
+                embed.description = reqBopae['setNotes']
+                embed.add_field(name='3-Set Bonuses',
+                                value='{}'.format(reqBopae['setBonus']['3']),
+                                inline=False)
+                embed.add_field(name='5-Set Bonuses',
+                                value='{}'.format(reqBopae['setBonus']['5']),
+                                inline=False)
+                embed.add_field(name='Full-set Bonuses',
+                                value='{}'.format(reqBopae['setBonus']['8']),
+                                inline=False)
+
+                # Embed Colour
                 try:
                     if reqBopae['rarity'].lower() == 'purple':
                         embed.colour = discord.Colour.purple()
@@ -122,9 +129,27 @@ class Bopae:
                     await self.bot.say("DEBUG: no rarity field in json")
                     embed.colour = discord.Colour.blue()
 
-                # embed.title = "{} - Slot {}".format(reqBopae['setName'], slotNum)
-                # embed.description = 'piece description here'
+                await self.bot.say(embed=embed)
+                continue
+
+
+            for slotNum in query[bopaeset]:
+                reqBopae = self.bopaeData[bopaeset]
+                reqPiece = self.bopaeData[bopaeset]["slot"+str(slotNum)]
+                embed = discord.Embed()
+
+                # Title
+                try:
+                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
+                    imageUrl = '{}{}.png'.format(reqBopae['imageUrl'][:-5], str(slotNum))
+                    embed.set_thumbnail(url=imageUrl)
+                except KeyError:
+                    await self.bot.say('DEBUG: no imageUrl field in json')
+                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
+
+                # Notes and description
                 embed.description = reqBopae['setNotes']
+
                 embed.add_field(name='HP',
                                 value=', '.join([str(i) for i in reqPiece['HP1']]),
                                 inline=True)
@@ -142,15 +167,18 @@ class Bopae:
                                 value=', '.join([str(i) for i in reqPiece['data2']]),
                                 inline=False)
 
-
-
+                # Embed colour (bopae rarity)
                 try:
-                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
-                    imageUrl = '{}{}.png'.format(reqBopae['imageUrl'][:-5], str(slotNum))
-                    embed.set_thumbnail(url=imageUrl)
+                    if reqBopae['rarity'].lower() == 'purple':
+                        embed.colour = discord.Colour.purple()
+                    elif reqBopae['rarity'].lower() == 'gold':
+                        embed.colour = discord.Colour.gold()
+                    else:
+                        await self.bot.say("DEBUG: unknown rarity value on json")
+                        embed.colour = discord.Colour.blue()
                 except KeyError:
-                    await self.bot.say('DEBUG: no imageUrl field in json')
-                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
+                    await self.bot.say("DEBUG: no rarity field in json")
+                    embed.colour = discord.Colour.blue()
 
                 await self.bot.say(embed=embed)
 
