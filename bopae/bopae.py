@@ -110,8 +110,12 @@ class Bopae:
                 embed.add_field(name='5-Set Bonuses',
                                 value='{}'.format(reqBopae['setBonus']['5']),
                                 inline=False)
+
+                bonus8 = reqBopae['setBonus']['8']
+                bonus8_2 = '\n'.join([ '{}: {}'.format(Bopae.getstatname(i), bonus8[i]) for i in bonus8 ])
                 embed.add_field(name='Full-set Bonuses',
-                                value='{}'.format(reqBopae['setBonus']['8']),
+                                # value='{}'.format(reqBopae['setBonus']['8']),
+                                value=bonus8_2,
                                 inline=False)
 
                 # Embed Colour
@@ -202,7 +206,7 @@ class Bopae:
     # TODO better exception handling
     # takes in text:list. returns dictionary key:setName, value:list integer slots
     # errormsg in dict: errormsg string of errors. "" on empty
-    def _parser(self, text):
+    def _parser(self, text:list):
         currset = ()
         query = {"errormsg": []}
         for i in text:
@@ -237,7 +241,7 @@ class Bopae:
         return query
 
 
-    def _namesearch(self, query):
+    def _namesearch(self, query:str):
         """Searches the corresponding object key given query"""
         if query == ():
             return ""
@@ -261,7 +265,7 @@ class Bopae:
 
     # TODO: ongoing
     @staticmethod
-    def getstatname(abbrev):
+    def getstatname(abbrev:str):
         abbrev = abbrev.lower()
 
         if abbrev == 'hp1':
