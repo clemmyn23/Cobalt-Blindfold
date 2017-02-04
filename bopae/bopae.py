@@ -45,9 +45,9 @@ class Bopae:
 
     @bopae.command(name="list")
     async def list(self):
+        """Show SS sets in the database"""
         await self._list()
     async def _list(self):
-        """Show SS sets in the database"""
         multiline = "Available SS sets:\n{}"\
                     .format(", ".join(map(str, self.bopaeData)))
         # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
@@ -57,9 +57,9 @@ class Bopae:
 
     @bopae.command(name="search", pass_context=True)
     async def search(self, ctx):
+        """BNS soul-shield search."""
         await self._search(ctx)
     async def _search(self, ctx:discord.ext.commands.Context):
-        """BNS soul-shield search."""
 
         # passes params into _parser() for parsing
         # returns dictionary
@@ -72,6 +72,8 @@ class Bopae:
 
 
         query = ctx.message.content.split()
+        # pre: '!bopae ' is guaranteed by discord.ext.commands method decorator
+
         if len(query) <= 1:     # TODO better input handling
             await send_cmd_help(ctx)
             return
@@ -88,7 +90,6 @@ class Bopae:
         if query["errormsg"]:
             await self.bot.say("{}\n".format(query["errormsg"]))
         del query["errormsg"]
-
 
         for bopaeset in query:
             if len(query[bopaeset]) == 0:
@@ -122,25 +123,30 @@ class Bopae:
                     embed.colour = discord.Colour.blue()
 
                 # embed.title = "{} - Slot {}".format(reqBopae['setName'], slotNum)
-                embed.description = 'piece description here'
+                # embed.description = 'piece description here'
+                embed.description = reqBopae['setNotes']
                 embed.add_field(name='HP',
-                                value=reqPiece['HP1'],
-                                inline=False)
+                                value=', '.join([str(i) for i in reqPiece['HP1']]),
+                                inline=True)
 
-                embed.add_field(name='Primary - {}'.format(reqPiece['stat1']),
-                                value='{}'.format(reqPiece['data1']))
-
-                embed.add_field(name='{}'.format(reqPiece['stat2']),
-                                value='{}'.format(reqPiece['data2']))
-
-                embed.add_field(name='Fusion maximum',
+                embed.add_field(name='Fusion Maximum',
                                 value='{}'.format(reqPiece['fusionmax']),
+                                inline=True)
+
+                embed.add_field(name='Primary - {}'.format(Bopae.getstatname(reqPiece['stat1'])),
+                                value=', '.join([str(i) for i in reqPiece['data1']]),
                                 inline=False)
+
+                stat2names = ', '.join([Bopae.getstatname(i) for i in reqPiece['stat2']])
+                embed.add_field(name='{}'.format(stat2names),
+                                value=', '.join([str(i) for i in reqPiece['data2']]),
+                                inline=False)
+
+
 
                 try:
                     embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
                     imageUrl = '{}{}.png'.format(reqBopae['imageUrl'][:-5], str(slotNum))
-
                     embed.set_thumbnail(url=imageUrl)
                 except KeyError:
                     await self.bot.say('DEBUG: no imageUrl field in json')
@@ -166,30 +172,6 @@ class Bopae:
         # else:
         #     await send_cmd_help(ctx)
 
-
-    # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
-    # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
-    def _getstatname(self, abbrev):
-        abbrev = abbrev.lower()
-        if abbrev == 'ap':
-            return 'Attack Power'
-        elif abbrev == 'crate':
-            return 'Critical Rate'
-        elif abbrev == 'cdmg':
-            return 'Critical Damage'
-        elif abbrev == 'pen':
-            return 'Penetration'
-        elif abbrev == 'admg':
-            return ''
-        elif abbrev == 'ele':
-            return ''
-        elif abbrev == 'ccdmg':
-            return ''
-        elif abbrev == 'acc':
-            return 'Accuracy'
-
-        else:
-            return 'Unknown'
 
     # TODO better exception handling
     # takes in text:list. returns dictionary key:setName, value:list integer slots
@@ -248,5 +230,50 @@ class Bopae:
             for tag in self.bopaeData[i]["tags"]:
                 if query.search(tag) != None:
                     return i
-
         return ""
+
+
+    # TODO: ongoing
+    @staticmethod
+    def getstatname(abbrev):
+        abbrev = abbrev.lower()
+
+        if abbrev == 'hp1':
+            return 'HP'
+        elif abbrev == 'hp2':
+            return 'HP'
+
+        elif abbrev == 'ap':
+            return 'Attack Power'
+        elif abbrev == 'crate':
+            return 'Critical Rate'
+        elif abbrev == 'cdmg':
+            return 'Critical Damage'
+        elif abbrev == 'acc':
+            return 'Accuracy'
+        elif abbrev == 'def':
+            return 'Defence'
+        elif abbrev == 'eva':
+            return 'Evasion'
+        elif abbrev == 'pen':
+            return 'Penetration'
+
+        elif abbrev == 'cdef':
+            return 'Critical Defence'
+        elif abbrev == 'blk':
+            return 'Block'
+
+        elif abbrev == 'vit':
+            return 'Vitality'
+
+        elif abbrev == 'reg':
+            return 'Recovery'
+
+        elif abbrev == 'ccdmg':
+            return 'ccdmg'
+
+        elif abbrev == 'fusionmax':
+            return 'Fusion maximum'
+
+        else:
+            return abbrev
