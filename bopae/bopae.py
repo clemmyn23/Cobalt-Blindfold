@@ -99,24 +99,32 @@ class Bopae:
                 reqBopae = self.bopaeData[bopaeset]
                 reqPiece = self.bopaeData[bopaeset]["slot"+str(slotNum)]
 
+
                 embed = discord.Embed()
+
                 try:
                     if reqBopae['rarity'].lower() == 'purple':
-                        embed.colour = discord.Colour(value=123)
+                        embed.colour = discord.Colour.purple()
                     elif reqBopae['rarity'].lower() == 'gold':
-                        embed.colour = discord.Colour(value=456)
+                        embed.colour = discord.Colour.gold()
                     else:
-                        embed.colour = discord.Colour(value=789)
+                        await self.bot.say("DEBUG: unknown rarity value on json")
+                        embed.colour = discord.Colour.blue()
                 except KeyError:
                     await self.bot.say("DEBUG: no rarity field in json")
-                    embed.colour = discord.Colour(value=678)
+                    embed.colour = discord.Colour.blue()
+
 
                 # embed.title = "{} - Slot {}".format(reqBopae['setName'], slotNum)
                 embed.description = 'piece description here'
-                embed.add_field(name='HP1_stat', value=reqPiece['HP1'])
+                embed.add_field(name='HP1_stat', value=reqPiece['HP1'], inline=False)
+
                 embed.add_field(name='primary_stat_name {}'.format(reqPiece['stat1']), value='{}'.format(reqPiece['data1']))
+
                 embed.add_field(name='secondary_stat_names', value='valueshere')
-                embed.add_field(name='fusionmax', value='valueshere')
+
+                embed.add_field(name='fusionmax', value='valueshere', inline=False)
+
                 try:
                     embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
                     imageUrl = reqBopae['imageUrl'][:-5] + str(slotNum) + '.png'
