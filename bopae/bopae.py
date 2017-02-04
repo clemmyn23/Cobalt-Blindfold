@@ -48,7 +48,8 @@ class Bopae:
         await self._list()
     async def _list(self):
         """Show SS sets in the database"""
-        multiline = "Available SS sets:\n{}\n".format(", ".join(map(str, self.bopaeData)))
+        multiline = "Available SS sets:\n{}"\
+                    .format(", ".join(map(str, self.bopaeData)))
         # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
         # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
         await self.bot.say(multiline)
@@ -91,14 +92,20 @@ class Bopae:
 
         for bopaeset in query:
             if len(query[bopaeset]) == 0:
-                # TODO print set stats and bonuses
+
                 await self.bot.say('TODO: set bonuses and shield info goes here')
                 continue
+                # TODO print set stats and bonuses
+                # embed. no inlines.
+                # name/ title/ author
+                # description. details. obtain methods
+                # 3 set bonuses
+                # 5 set bonuses
+                # 8/full set bonuses
 
             for slotNum in query[bopaeset]:
                 reqBopae = self.bopaeData[bopaeset]
                 reqPiece = self.bopaeData[bopaeset]["slot"+str(slotNum)]
-
 
                 embed = discord.Embed()
 
@@ -114,20 +121,26 @@ class Bopae:
                     await self.bot.say("DEBUG: no rarity field in json")
                     embed.colour = discord.Colour.blue()
 
-
                 # embed.title = "{} - Slot {}".format(reqBopae['setName'], slotNum)
                 embed.description = 'piece description here'
-                embed.add_field(name='HP1_stat', value=reqPiece['HP1'], inline=False)
+                embed.add_field(name='HP',
+                                value=reqPiece['HP1'],
+                                inline=False)
 
-                embed.add_field(name='primary_stat_name {}'.format(reqPiece['stat1']), value='{}'.format(reqPiece['data1']))
+                embed.add_field(name='Primary - {}'.format(reqPiece['stat1']),
+                                value='{}'.format(reqPiece['data1']))
 
-                embed.add_field(name='secondary_stat_names', value='valueshere')
+                embed.add_field(name='{}'.format(reqPiece['stat2']),
+                                value='{}'.format(reqPiece['data2']))
 
-                embed.add_field(name='fusionmax', value='valueshere', inline=False)
+                embed.add_field(name='Fusion maximum',
+                                value='{}'.format(reqPiece['fusionmax']),
+                                inline=False)
 
                 try:
                     embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
-                    imageUrl = reqBopae['imageUrl'][:-5] + str(slotNum) + '.png'
+                    imageUrl = '{}{}.png'.format(reqBopae['imageUrl'][:-5], str(slotNum))
+
                     embed.set_thumbnail(url=imageUrl)
                 except KeyError:
                     await self.bot.say('DEBUG: no imageUrl field in json')
@@ -154,7 +167,29 @@ class Bopae:
         #     await send_cmd_help(ctx)
 
 
+    # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
+    # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
+    def _getstatname(self, abbrev):
+        abbrev = abbrev.lower()
+        if abbrev == 'ap':
+            return 'Attack Power'
+        elif abbrev == 'crate':
+            return 'Critical Rate'
+        elif abbrev == 'cdmg':
+            return 'Critical Damage'
+        elif abbrev == 'pen':
+            return 'Penetration'
+        elif abbrev == 'admg':
+            return ''
+        elif abbrev == 'ele':
+            return ''
+        elif abbrev == 'ccdmg':
+            return ''
+        elif abbrev == 'acc':
+            return 'Accuracy'
 
+        else:
+            return 'Unknown'
 
     # TODO better exception handling
     # takes in text:list. returns dictionary key:setName, value:list integer slots
