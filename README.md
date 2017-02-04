@@ -12,27 +12,28 @@ whichever ss stats you query for.
 
 
 ## Dependencies:  
-* [Red-DiscordBot](https://github.com/Twentysix26/Red-DiscordBot) or whichever bot
-* BeautifulSoup4 for web parsing components (currently disabled)
+* [Red-DiscordBot](https://github.com/Twentysix26/Red-DiscordBot)
+* ~~BeautifulSoup4 for web parsing components~~ (disabled)
 
 ## Commands:
 * `!bopae` or `!bopae search`
 * `!bopae list`
-* `!bopae compare`
-* `!bopae reload`
-* and maybe more. 
+* ~~`!bopae compare`~~ (disabled)
+* ~~`!bopae reload`~~ (disabled)
+* and maybe more.
 
 
 ## Install:  
 #### Red-DiscordBot:  
-1. Copy `/BOTS/RED-DISCORDBOT/bopae.py` into `~RED-DISCORDBOT/cogs/bopae.py`  
-2. Copy `/data/*` into `~RED-DISCORDBOT/data/bopae/`  
-3. Run `!load bopae` or `!reload bopae` (may have to restart Red if you updated `libbopae/`)
-4. Run `!bopae` for help
+* Make sure the `downloader` cog that comes with Red-DiscordBot is enabled.  
 
-#### BASEDBOT:  
-1. - TODO -
+1. ssh `[p]cog repo add Cobalt-Blindfold git@github.com:clemmyn23/Cobalt-Blindfold.git@develop`  
+https `[p]cog repo add Cobalt-Blindfold https://github.com/clemmyn23/Cobalt-Blindfold.git@develop`
+2. Read the warning and type `I agree` when prompted.
+3. `[p]cog install bopae`
+4. Type `yes` to load the cog when prompted.
 
+* `[p]reload bopae` to reload the cog  
 
 ## TODO:  
 - redesign search to account for class specific soul shields
