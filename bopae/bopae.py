@@ -20,9 +20,10 @@ class Bopae:
         self.bot = bot
         self.data_dir = BOPAE_DATA_DIR
         self.bopaeData = {}
-        for file in os.listdir(self.data_dir):
-            with open(self.data_dir + file) as f:
-                self.bopaeData.update(json.load(f))
+        self._reload()
+        # for file in os.listdir(self.data_dir):
+        #     with open(self.data_dir + file) as f:
+        #         self.bopaeData.update(json.load(f))
 
 
     @commands.group(name="bopae", pass_context=True)
@@ -36,7 +37,6 @@ class Bopae:
             !bopae yeti 2 4 ebon all asura 1 3 5
 
         """
-
         if ctx.invoked_subcommand is None:
             if len(ctx.message.content.split()) > 1:
                 await self._search(ctx)
@@ -44,15 +44,24 @@ class Bopae:
                 await send_cmd_help(ctx)
 
 
+    @bopae.command(name="reload")
+    async def reload(self):
+        """Reload soul-shield database"""
+        self._reload()
+        await self.bot.say('SS reloaded (if there are no error messages)')
+    def _reload(self):
+        self.bopaeData = {}
+        for file in os.listdir(self.data_dir):
+            with open(self.data_dir + file) as f:
+                self.bopaeData.update(json.load(f))
+
+
     @bopae.command(name="list")
     async def list(self):
         """Show SS sets in the database"""
         await self._list()
     async def _list(self):
-        multiline = "Available SS sets:\n{}"\
-                    .format(", ".join(map(str, self.bopaeData)))
-        # multiline += "Available stats: AP cRate cDmg PEN aDmg Ele CCdmg ACC "
-        # multiline += "HP1 HP2 DEF cDef VIT REG EVA BLK rDmg fusionmax"
+        multiline = "Available SS sets:\n{}\n".format(", ".join(map(str, self.bopaeData)))
         await self.bot.say(multiline)
 
 
@@ -96,7 +105,6 @@ class Bopae:
                 try:
                     embed.set_author(name='{} [{}]'.format(reqBopae['setName'], bopaeset))
                     imageUrl = reqBopae['imageUrl']         # use default image
-                    print(imageUrl)
                     embed.set_thumbnail(url=imageUrl)
                 except KeyError:
                     embed.set_author(name='{} [{}] [no_pic]'.format(reqBopae['setName'], bopaeset))
@@ -130,15 +138,14 @@ class Bopae:
                     elif reqBopae['rarity'].lower() == 'gold':
                         embed.colour = discord.Colour.gold()
                     else:
-                        await self.bot.say("DEBUG: unknown rarity value on json")
+                        # await self.bot.say("DEBUG: unknown rarity value on json")
                         embed.colour = discord.Colour.blue()
                 except KeyError:
-                    await self.bot.say("DEBUG: no rarity field in json")
+                    # await self.bot.say("DEBUG: no rarity field in json")
                     embed.colour = discord.Colour.blue()
 
                 await self.bot.say(embed=embed)
                 continue
-
 
             for slotNum in query[bopaeset]:
                 reqBopae = self.bopaeData[bopaeset]
@@ -147,12 +154,11 @@ class Bopae:
 
                 # Title
                 try:
-                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
+                    embed.set_author(name='{} [{}] - Slot {}'.format(reqBopae['setName'], bopaeset, slotNum))
                     imageUrl = '{}{}.png'.format(reqBopae['imageUrl'][:-5], str(slotNum))
                     embed.set_thumbnail(url=imageUrl)
                 except KeyError:
-                    await self.bot.say('DEBUG: no imageUrl field in json')
-                    embed.set_author(name="{} - Slot {}".format(reqBopae['setName'], slotNum))
+                    embed.set_author(name='{} [{}] [no_pic] - Slot {}'.format(reqBopae['setName'], bopaeset, slotNum))
 
                 # Notes and description
                 embed.description = reqBopae['setNotes']
@@ -160,17 +166,24 @@ class Bopae:
                 embed.add_field(name='HP',
                                 value=', '.join([str(i) for i in reqPiece['HP1']]),
                                 inline=True)
-
-                embed.add_field(name='Fusion Maximum',
+                embed.add_field(name='Fusion',
                                 value='{}'.format(reqPiece['fusionmax']),
                                 inline=True)
-
                 embed.add_field(name='Primary - {}'.format(Bopae.getstatname(reqPiece['stat1'])),
                                 value=', '.join([str(i) for i in reqPiece['data1']]),
                                 inline=False)
 
                 stat2names = ', '.join([Bopae.getstatname(i) for i in reqPiece['stat2']])
-                embed.add_field(name='{}'.format(stat2names),
+                if 'HP2' in reqPiece['stat2']:
+                    a = reqPiece['data2'][0:int(len(reqPiece['data2'])/2)]
+                    a = ', '.join([str(i) for i in a])
+                    b = reqPiece['data2'][int(len(reqPiece['data2'])/2)::]
+                    b = ', ({})'.format(', '.join([str(i) for i in b]))
+                    embed.add_field(name='{}'.format(stat2names),
+                                value=a+b,
+                                inline=False)
+                else:
+                    embed.add_field(name='{}'.format(stat2names),
                                 value=', '.join([str(i) for i in reqPiece['data2']]),
                                 inline=False)
 
@@ -181,15 +194,11 @@ class Bopae:
                     elif reqBopae['rarity'].lower() == 'gold':
                         embed.colour = discord.Colour.gold()
                     else:
-                        await self.bot.say("DEBUG: unknown rarity value on json")
                         embed.colour = discord.Colour.blue()
                 except KeyError:
-                    await self.bot.say("DEBUG: no rarity field in json")
                     embed.colour = discord.Colour.blue()
 
                 await self.bot.say(embed=embed)
-
-
 
 
     @bopae.command(name="compare", aliases=["cmp"], pass_context=True)
@@ -224,7 +233,7 @@ class Bopae:
                         i = int(i)
 
                         if currset == ():
-                            raise Exception('Attempted to assign soulshield slot to empty set')
+                            raise ValueError('Attempted to assign soulshield slot to empty set')
                         if i < 1 or i > 8:
                             raise ValueError('Invalid soul shield slot')
 
