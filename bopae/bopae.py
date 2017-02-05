@@ -94,28 +94,33 @@ class Bopae:
 
                 # Title
                 try:
-                    embed.set_author(name=reqBopae['setName'])
+                    embed.set_author(name='{} [{}]'.format(reqBopae['setName'], bopaeset))
                     imageUrl = reqBopae['imageUrl']         # use default image
                     print(imageUrl)
                     embed.set_thumbnail(url=imageUrl)
                 except KeyError:
-                    await self.bot.say('DEBUG: no imageUrl field in json')
-                    embed.set_author(name=reqBopae['setName'])
+                    embed.set_author(name='{} [{}] [no_pic]'.format(reqBopae['setName'], bopaeset))
 
                 # Description and Set Bonuses
                 embed.description = reqBopae['setNotes']
-                embed.add_field(name='3-Set Bonuses',
-                                value='{}'.format(reqBopae['setBonus']['3']),
-                                inline=False)
-                embed.add_field(name='5-Set Bonuses',
-                                value='{}'.format(reqBopae['setBonus']['5']),
-                                inline=False)
 
-                bonus8 = reqBopae['setBonus']['8']
-                bonus8_2 = '\n'.join([ '{}: {}'.format(Bopae.getstatname(i), bonus8[i]) for i in bonus8 ])
-                embed.add_field(name='Full-set Bonuses',
-                                # value='{}'.format(reqBopae['setBonus']['8']),
-                                value=bonus8_2,
+                bonus3 = '\n'.join(['{}: {}'\
+                        .format(Bopae.getstatname(i),
+                        reqBopae['setBonus']['3'][i])
+                        for i in sorted(reqBopae['setBonus']['3']) ])
+                embed.add_field(name='3-Set Bonuses', value=bonus3,
+                                inline=False)
+                bonus5 = '\n'.join(['{}: {}'\
+                        .format(Bopae.getstatname(i),
+                        reqBopae['setBonus']['5'][i])
+                        for i in sorted(reqBopae['setBonus']['5'])])
+                embed.add_field(name='5-Set Bonuses', value=bonus5,
+                                inline=False)
+                bonus8 = '\n'.join(['{}: {}'\
+                        .format(Bopae.getstatname(i),
+                        reqBopae['setBonus']['8'][i])
+                        for i in sorted(reqBopae['setBonus']['8'])])
+                embed.add_field(name='Full-set Bonuses', value=bonus8,
                                 inline=False)
 
                 # Embed Colour
