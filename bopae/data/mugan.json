@@ -1,0 +1,77 @@
+{
+    "mugan": {
+        "tags": ["foundary"],
+        "setName": "Naryu Foundary",
+        "setNotes": "Khanda Vihar. Need driver, true scorpio weapon minimum.",
+        "rarity": "purple",
+        "setBonus": {
+            "3": {
+                "HP2": 16900
+            }
+        },
+        "slot1": {
+            "HP1": [3260, 4660],
+            "fusionmax": 232,
+            "stat1": "ACC",
+            "data1": [227, 325],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [111, 139]
+        },
+        "slot2": {
+            "HP1": [3420, 4880],
+            "fusionmax": 243,
+            "stat1": "ACC",
+            "data1": [238, 341],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [116, 145]
+        },
+        "slot3": {
+            "HP1": [249, 356],
+            "fusionmax": 254,
+            "stat1": "EVA",
+            "data1": [249, 356],
+            "stat2": ["HP2", "ACC", "BLK"],
+            "data2": [121, 152]
+        },
+        "slot4": {
+            "HP1": [3730, 5330],
+            "fusionmax": 265,
+            "stat1": "HP1",
+            "data1": [3730, 5330],
+            "stat2": ["HP2", "cRate"],
+            "data2": [127, 159, 1270, 1590]
+        },
+        "slot5": {
+            "HP1": [4040, 5770],
+            "fusionmax": 287,
+            "stat1": "EVA",
+            "data1": [281, 402],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [137, 172]
+        },
+        "slot6": {
+            "HP1": [7100, 10160],
+            "fusionmax": 298,
+            "stat1": "HP1",
+            "data1": [7100, 10160],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [143, 179]
+        },
+        "slot7": {
+            "HP1": [4350, 6210],
+            "fusionmax": 310,
+            "stat1": "BLK",
+            "data1": [303, 434],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [148, 185]
+        },
+        "slot8": {
+            "HP1": [4500, 6440],
+            "fusionmax": 321,
+            "stat1": "cRate",
+            "data1": [314, 449],
+            "stat2": ["HP2", "ACC", "DEF"],
+            "data2": [153, 192, 1530, 1920]
+        }
+    }
+}

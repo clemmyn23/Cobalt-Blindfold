@@ -275,10 +275,17 @@ class Bopae:
         if query == ():
             return ""
 
+        # try exact matches
         query = query.lower()
-        if query in [setnames.lower() for setnames in self.bopaeData]:
+        # if query in [setnames.lower() for setnames in self.bopaeData]:
+        if query in map(str.lower, self.bopaeData):
             return query
 
+        for i in self.bopaeData:
+            if query in map(str.lower, self.bopaeData[i]["tags"]):
+                return i
+
+        # try partial matches
         if len(query) < 3 or query == "all":
             return ""
 
