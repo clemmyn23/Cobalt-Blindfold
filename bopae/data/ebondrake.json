@@ -1,0 +1,85 @@
+{
+    "ebondrake": {
+        "tags": ["black", "dragon", "citadel", "zakhan"],
+        "setName": "Ebondrake Citadel",
+        "setNotes": "stealth stealth",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_heukryong_extra_pos1.png",
+        "rarity": "purple",
+        "setBonus": {
+            "3": {
+                "AP": 7
+            },
+            "5": {
+                "cDmg": 12
+            },
+            "8": {
+                "PEN": 284,
+                "HP1": 2000
+            }
+        },
+        "slot1": {
+            "HP1": [2710, 3290, 3870],
+            "fusionmax": 215,
+            "stat1": "ACC",
+            "data1": [210, 255, 301],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [102, 128]
+        },
+        "slot2": {
+            "HP1": [2840, 3440, 4050],
+            "fusionmax": 225,
+            "stat1": "ACC",
+            "data1": [220, 267, 315],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [107, 134]
+        },
+        "slot3": {
+            "HP1": [2960, 3600, 4230],
+            "fusionmax": 235,
+            "stat1": "EVA",
+            "data1": [230, 279, 329],
+            "stat2": ["ACC", "HP2", "BLK"],
+            "data2": [112, 141, 1120, 1410]
+        },
+        "slot4": {
+            "HP1": [3090, 3760, 4420],
+            "fusionmax": 245,
+            "stat1": "DEF",
+            "data1": [240, 291, 343],
+            "stat2": ["cRate", "HP2", "BLK"],
+            "data2": [117, 147, 1170, 1470]
+        },
+        "slot5": {
+            "HP1": [3350, 4070, 4790],
+            "fusionmax": 266,
+            "stat1": "EVA",
+            "data1": [260, 316, 372],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [127, 159]
+        },
+        "slot6": {
+            "HP1": [6180, 7510, 8830],
+            "fusionmax": 276,
+            "stat1": "HP1",
+            "data1": [6180, 7510, 8830],
+            "stat2": ["cRate", "DEF", "BLK"],
+            "data2": [132, 165]
+        },
+        "slot7": {
+            "HP1": [3610, 4380, 5160],
+            "fusionmax": 286,
+            "stat1": "BLK",
+            "data1": [280, 340, 401],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [136, 171]
+        },
+        "slot8": {
+            "HP1": [3740, 4540, 5340],
+            "fusionmax": 296,
+            "stat1": "cRate",
+            "data1": [290, 352, 415],
+            "stat2": ["ACC", "HP2", "DEF"],
+            "data2": [141, 177]
+        }
+    }
+}

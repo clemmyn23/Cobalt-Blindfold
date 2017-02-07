@@ -1,8 +1,5 @@
 # Cobalt-Blindfold
-Soul-shields data and utilities for Blade and Soul game.  
-
-Add it as a module for your discord bot of choice, and it'll list  
-whichever ss stats you query for.
+Soul-shields data and utilities for Blade & Soul game.  
 
 
 ## Credits:
@@ -12,29 +9,37 @@ whichever ss stats you query for.
 
 
 ## Dependencies:  
-* [Red-DiscordBot](https://github.com/Twentysix26/Red-DiscordBot) or whichever bot
-* BeautifulSoup4 for web parsing components (currently disabled)
+* [Red-DiscordBot](https://github.com/Twentysix26/Red-DiscordBot)
+* ~~BeautifulSoup4 for web parsing components~~ (disabled)
+
 
 ## Commands:
 * `!bopae` or `!bopae search`
 * `!bopae list`
-* `!bopae compare`
 * `!bopae reload`
-* and maybe more. 
+* ~~`!bopae compare`~~ (disabled)
 
 
 ## Install:  
 #### Red-DiscordBot:  
-1. Copy `/BOTS/RED-DISCORDBOT/bopae.py` into `~RED-DISCORDBOT/cogs/bopae.py`  
-2. Copy `/data/*` into `~RED-DISCORDBOT/data/bopae/`  
-3. Run `!load bopae` or `!reload bopae` (may have to restart Red if you updated `libbopae/`)
-4. Run `!bopae` for help
+1. Make sure the `downloader` cog that comes with Red-DiscordBot is enabled.  
+2. Pick one:  
+ssh `[p]cog repo add Cobalt-Blindfold git@github.com:clemmyn23/Cobalt-Blindfold.git`  
+https `[p]cog repo add Cobalt-Blindfold https://github.com/clemmyn23/Cobalt-Blindfold.git`
+3. `[p]cog install bopae`
 
-#### BASEDBOT:  
-1. - TODO -
+
+## Update:
+#### Red-DiscordBot:
+1. `[p]cog update`
+2. `[p]cog install Cobalt-Blindfold bopae`
+3. `[p]reload bopae`
+
+
+## Screenshots:
+![image](https://i.imgur.com/8kD8qOk.png)
 
 
 ## TODO:  
-- redesign search to account for class specific soul shields
 - profile parser
 - statistics and analysis?

@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "CardboardBoy",
+    "INSTALL_MSG" : "Main bopae cog. Usage: [p]bopae ebon 2",
+    "NAME" : "Bopae",
+    "SHORT" : "BNS main bopae cog ",
+    "DESCRIPTION" : "BNS main bopae cog for easy soul-shield stats look-up.",
+    "DISABLED": false
+}

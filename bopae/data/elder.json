@@ -3,6 +3,7 @@
         "tags": ["elder", "Beluga", "Lagoon", "LegendaryPVP"],
         "setName": "Elder",
         "setNotes": "Beluga Lagoon & Whirlwind Valley, Legendary PVP Soulshield",
+        "rarity": "gold",
         "setBonus": {
             "3": {
                 "Depends on the class": 0

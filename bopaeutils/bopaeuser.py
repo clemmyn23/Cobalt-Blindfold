@@ -12,6 +12,11 @@ from urllib.parse import quote
 
 class Bopae_parser:
 
+    # TODO:
+    # - extract all data from web
+    # - map data to set names
+    # - calculations versus BIS
+
 
     def __init__(self):
         # TODO

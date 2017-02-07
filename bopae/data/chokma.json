@@ -1,0 +1,100 @@
+{
+    "chokma": {
+        "tags": ["blacktower", "bt", "skybreak"],
+        "setName": "Skybreak Spire",
+        "setNotes": "Black Tower, Chokma. 24-man raid.",
+        "rarity": "gold",
+        "setBonus": {
+            "3": {
+                "00_Class specific": "",
+                "BM": "[4] skill damage increase by 100%, cooldown decrease by 30%.",
+                "DES": "[X] skill damage increase by 8-%, cooldown decrease by 20%.",
+                "KFM": "[4] skill damage increase by 75%.",
+                "LBD 1": "[F] wind skill damage increase by 15%.",
+                "LBD 2": "[F] draw skill damage increase by 15%.",
+                "SF": "[F] kfm proc skill damage increase by 50%.",
+                "SIN": "[RB] skill damage increase by 25%."
+            },
+            "5": {
+                "AP": 12,
+                "cDmg": "18%"
+            },
+            "8": {
+                "00_Class specific": "",
+                "BM": "[V] skill cooldown decrease by 30%.",
+                "DES 1": "[RB] skill damage increase by 30%.",
+                "DES 2": "[F] proc skill damage increase by 70%",
+                "KFM": "[TAB] buff skill cooldown decrease by 30%.",
+                "LBD 1": "[RB] normal skill damage increase by 25%.",
+                "LBD 2": "[LB] draw skill damage increase by 25%.",
+                "SF": "[V] kfm skill damage increase by 70%.",
+                "SIN 1": "[F] proc skill increase by 25%.",
+                "SIN 2": "[4] stealth skill increase by 30%."
+            }
+        },
+        "slot1": {
+            "HP1": [3880, 5550],
+            "fusionmax": 290,
+            "stat1": "ACC",
+            "data1": [284, 406],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [139, 174]
+        },
+        "slot2": {
+            "HP1": [4070, 5810],
+            "fusionmax": 304,
+            "stat1": "HP2",
+            "data1": [2970, 4250],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [145, 182]
+        },
+        "slot3": {
+            "HP1": [4250, 6070],
+            "fusionmax": 318,
+            "stat1": "BLK",
+            "data1": [311, 445],
+            "stat2": ["cRate", "ACC", "BLK"],
+            "data2": [158, 198]
+        },
+        "slot4": {
+            "HP1": [4440, 6870],
+            "fusionmax": 332,
+            "stat1": "EVA",
+            "data1": [325, 465],
+            "stat2": ["cRate", "ACC", "BLK"],
+            "data2": [158, 198]
+        },
+        "slot5": {
+            "HP1": [4810, 6870],
+            "fusionmax": 359,
+            "stat1": "cRate",
+            "data1": [352, 503],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [172, 215]
+        },
+        "slot6": {
+            "HP1": [4990, 7130],
+            "fusionmax": 373,
+            "stat1": "ACC",
+            "data1": [366, 523],
+            "stat2": ["cRate", "DEF", "EVA"],
+            "data2": [178, 223]
+        },
+        "slot7": {
+            "HP1": [5180, 7390],
+            "fusionmax": 387,
+            "stat1": "cRate",
+            "data1": [378, 541],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [185, 232]
+        },
+        "slot8": {
+            "HP1": [5360, 7660],
+            "fusionmax": 401,
+            "stat1": "cRate",
+            "data1": [392, 561],
+            "stat2": ["HP2", "ACC", "DEF"],
+            "data2": [192, 240, 1920, 2400]
+        }
+    }
+}
