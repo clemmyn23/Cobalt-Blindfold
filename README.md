@@ -29,6 +29,13 @@ https `[p]cog repo add Cobalt-Blindfold https://github.com/clemmyn23/Cobalt-Blin
 3. `[p]cog install bopae`
 
 
+## Update:
+#### Red-DiscordBot:
+1. `[p]cog update`
+2. `[p]cog install Cobalt-Blindfold bopae`
+3. `[p]reload bopae`
+
+
 ## Screenshots:
 ![image](https://i.imgur.com/8kD8qOk.png)
 
