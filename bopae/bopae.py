@@ -111,25 +111,33 @@ class Bopae:
 
                 # Description and Set Bonuses
                 embed.description = reqBopae['setNotes']
-
-                bonus3 = '\n'.join(['{}: {}'\
-                        .format(Bopae.getstatname(i),
-                        reqBopae['setBonus']['3'][i])
-                        for i in sorted(reqBopae['setBonus']['3']) ])
-                embed.add_field(name='3-Set Bonuses', value=bonus3,
-                                inline=False)
-                bonus5 = '\n'.join(['{}: {}'\
-                        .format(Bopae.getstatname(i),
-                        reqBopae['setBonus']['5'][i])
-                        for i in sorted(reqBopae['setBonus']['5'])])
-                embed.add_field(name='5-Set Bonuses', value=bonus5,
-                                inline=False)
-                bonus8 = '\n'.join(['{}: {}'\
-                        .format(Bopae.getstatname(i),
-                        reqBopae['setBonus']['8'][i])
-                        for i in sorted(reqBopae['setBonus']['8'])])
-                embed.add_field(name='Full-set Bonuses', value=bonus8,
-                                inline=False)
+                try:
+                    bonus3 = '\n'.join(['{}: {}'\
+                            .format(Bopae.getstatname(i),
+                            reqBopae['setBonus']['3'][i])
+                            for i in sorted(reqBopae['setBonus']['3']) ])
+                    embed.add_field(name='3-Set Bonuses', value=bonus3,
+                                    inline=False)
+                except KeyError:
+                    pass
+                try:
+                    bonus5 = '\n'.join(['{}: {}'\
+                            .format(Bopae.getstatname(i),
+                            reqBopae['setBonus']['5'][i])
+                            for i in sorted(reqBopae['setBonus']['5'])])
+                    embed.add_field(name='5-Set Bonuses', value=bonus5,
+                                    inline=False)
+                except KeyError:
+                    pass
+                try:
+                    bonus8 = '\n'.join(['{}: {}'\
+                            .format(Bopae.getstatname(i),
+                            reqBopae['setBonus']['8'][i])
+                            for i in sorted(reqBopae['setBonus']['8'])])
+                    embed.add_field(name='Full-set Bonuses', value=bonus8,
+                                    inline=False)
+                except KeyError:
+                    pass
 
                 # Embed Colour
                 try:
@@ -292,7 +300,7 @@ class Bopae:
         if abbrev == 'hp1':
             return 'HP'
         elif abbrev == 'hp2':
-            return 'HP'
+            return 'HP 2'
 
         elif abbrev == 'ap':
             return 'Attack Power'
