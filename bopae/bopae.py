@@ -44,11 +44,8 @@ class Bopae:
     @bopae.command(name="reload")
     async def reload(self):
         """Reload soul-shield database"""
-        try:
-            self._reload()
-            await self.bot.say('SS reloaded')
-        except Exception as e:
-            await self.bot.say(e)
+        self._reload()
+        await self.bot.say('SS reloaded (if there are no error messages)')
     def _reload(self):
         self.bopaeData = {}
         for file in os.listdir(self.data_dir):
@@ -216,13 +213,14 @@ class Bopae:
                 await self.bot.say(embed=embed)
 
 
-    # @bopae.command(name="compare", aliases=["cmp"], pass_context=True)
-    # async def compare(self, ctx):
-    #     """BNS soul-shield compare.
-    #     FORMAT: !bopae compare/cmp [name1] [name2] [slot#]
-    #     """
-    #     await self.bot.say("bopae compare temporarily disabled")
-    #     return
+    @bopae.command(name="compare", aliases=["cmp"], pass_context=True)
+    async def compare(self, ctx):
+        """BNS soul-shield compare.
+        FORMAT: !bopae compare/cmp [name1] [name2] [slot#]
+        """
+        await self.bot.say("bopae compare temporarily disabled")
+        return
+
         # if len(ctx.message.content.split()) > 2:
         #     search_result = self.Bopae.compare(ctx.message.content)
         #     for page in pagify(search_result, ['\n']):
@@ -234,63 +232,6 @@ class Bopae:
     # TODO better exception handling
     # takes in text:list. returns dictionary key:setName, value:list integer slots
     # errormsg in dict: errormsg string of errors. "" on empty
-    def _parser2(self, usrinputs:list):
-        query = { 'errormsg': [] }
-
-        currset = ''
-        for currparam in usrinputs:
-
-            if currset == '':
-                # try matching names
-                tempset = _namesearch(currparam)
-                if tempset = '':
-                    # didn't match name
-                    # send error. TODO errormsg append
-                    pass
-                else:
-                    currset = tempset
-
-                continue
-
-
-            # try matching nums
-            isNum = False
-            try:
-                int('yeti')             # TODO
-                isNum = True
-            except ValueError:
-                isNum = False
-
-            if isNum:
-                # int() check passed. jump to next loop iteration
-                continue
-
-            elif 'inputstringhere' == 'all':
-                isNum = True
-                # TODO
-
-            elif re.match('regexhere', 'inputstringhere'):
-                isNum = True
-                # TODO
-
-            if not isNum:
-                # TODO edge case error (undefined)
-                continue
-
-
-
-
-
-        # special: currset empty
-        #
-        # case: integer
-        # case: r'$(\d+)-(\d+)^'
-        # case: 'all'
-        # case: valid set name
-        # case: all else -> failure
-
-
-
     def _parser(self, text:list):
         currset = ()
         query = {"errormsg": []}
@@ -301,7 +242,7 @@ class Bopae:
                     query[currset] = [1, 2, 3, 4, 5, 6, 7, 8]
                     continue
                 try:
-                    i = int(i)  # raises ValueError
+                    i = int(i)
 
                     if currset == ():
                         raise ValueError('Attempted to assign soulshield slot to empty set')
@@ -313,7 +254,7 @@ class Bopae:
                         query[currset].append(i)
                     elif i not in query[currset]:
                         query[currset].append(i)
-                except ValueError:
+                except:
                     if currset == ():
                         query["errormsg"]\
                             .append("Invalid set name [{}]".format(i) )
