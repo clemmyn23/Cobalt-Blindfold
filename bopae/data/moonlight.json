@@ -1,8 +1,10 @@
 {
     "moonlight": {
-        "tags": ["moonlight", "longgui", "midnight", "skypetal", "plains", "legendaryPVE"],
+        "tags": ["msp", "moonlight", "longgui", "midnight", "skypetal", "plains", "legendaryPVE"],
         "setName": "Moonlight",
         "setNotes": "Sacred Longgui Legendary Soulshield from Midnight Skypetal Plains",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_legendlynsw1_extra_pos1.png",
+        "rarity": "gold",
         "setBonus": {
             "3": {
                 "Depends on the class": 0

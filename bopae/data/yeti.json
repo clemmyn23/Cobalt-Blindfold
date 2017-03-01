@@ -2,7 +2,8 @@
     "yeti": {
         "tags": ["snow"],
         "setName": "Avalanche Den",
-        "setNotes": "i-frame simulator",
+        "setNotes": "i-frame simulator 2016",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_yettycaveboss_extra_pos1.png",
         "setBonus": {
             "3": {
                 "PEN": 89
