@@ -3,6 +3,7 @@
         "tags": ["blacktower", "bt", "skybreak"],
         "setName": "Skybreak Spire",
         "setNotes": "Black Tower, Chokma. 24-man raid.",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_legendlynsw3_extra_pos1.png",
         "rarity": "gold",
         "setBonus": {
             "3": {
@@ -13,7 +14,11 @@
                 "LBD 1": "[F] wind skill damage increase by 15%.",
                 "LBD 2": "[F] draw skill damage increase by 15%.",
                 "SF": "[F] kfm proc skill damage increase by 50%.",
-                "SIN": "[RB] skill damage increase by 25%."
+                "SIN": "[RB] skill damage increase by 25%.",
+                "FM": "[X] skill damage increase by 100%",
+                "SMN 1": "[F] skill damage increase by 190%",
+                "SMN 2": "[F] skill cooldown decrease by 30%",
+                "WL": "[RB] skill damage increase by 15%"
             },
             "5": {
                 "AP": 12,
@@ -29,7 +34,10 @@
                 "LBD 2": "[LB] draw skill damage increase by 25%.",
                 "SF": "[V] kfm skill damage increase by 70%.",
                 "SIN 1": "[F] proc skill increase by 25%.",
-                "SIN 2": "[4] stealth skill increase by 30%."
+                "SIN 2": "[4] stealth skill increase by 30%.",
+                "FM": "[LB][RB] skills damage increase by 20%",
+                "SMN": "[RB] skill damage increase by 15%",
+                "WL": "[TAB] summon skill cooldown decrease by 30%"
             }
         },
         "slot1": {

@@ -2,7 +2,8 @@
     "asura": {
         "tags": ["sogun", "sura", "azura", "zura", "soguns"],
         "setName": "Sogun's Lament",
-        "setNotes": "ice ice ice ice ice!",
+        "setNotes": "Ember drops here. Accessories 6m only.",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_seolokgungboss_extra_pos1.png",
         "setBonus": {
             "3": {
                 "AP": 5

@@ -2,7 +2,8 @@
     "elder": {
         "tags": ["elder", "Beluga", "Lagoon", "LegendaryPVP"],
         "setName": "Elder",
-        "setNotes": "Beluga Lagoon & Whirlwind Valley, Legendary PVP Soulshield",
+        "setNotes": "Beluga Lagoon, Legendary PVP Soulshield",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_legendlynsw4_extra_pos1.png",
         "rarity": "gold",
         "setBonus": {
             "3": {

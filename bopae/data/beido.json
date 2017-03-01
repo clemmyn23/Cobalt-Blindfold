@@ -3,6 +3,7 @@
         "tags": ["be ido", "be-ido", "ido"],
         "setName": "Sundered Nexus",
         "setNotes": "robots",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_baeyido_extra_pos1.png",
         "setBonus": {
             "3": {
                 "ACC": 96,
