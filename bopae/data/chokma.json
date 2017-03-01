@@ -1,8 +1,8 @@
 {
     "chokma": {
-        "tags": ["blacktower", "bt", "skybreak"],
+        "tags": ["raven", "blacktower", "bt", "skybreak"],
         "setName": "Skybreak Spire",
-        "setNotes": "Black Tower, Chokma. 24-man raid.",
+        "setNotes": "Raven King Black Tower. Chokma. 24-man raid.",
         "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/gem/equipgem_legendlynsw3_extra_pos1.png",
         "rarity": "gold",
         "setBonus": {
