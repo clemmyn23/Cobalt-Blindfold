@@ -1,0 +1,78 @@
+{
+    "igneous": {
+        "tags": ["af", "automaton"],
+        "setName": "Automaton Foundry",
+        "setNotes": "Igneous - Sapphire Basin",
+        "rarity": "purple",
+        "setBonus": {
+            "3": {
+                "HP2": 10850,
+                "DEF": 600
+            }
+        },
+        "slot1": {
+            "HP1": [5950, 8500],
+            "fusionmax": 251,
+            "stat1": "HP1",
+            "data1": [5950, 8500],
+            "stat2": ["cRate", "ACC", "DEF"],
+            "data2": [120, 150]
+        },
+        "slot2": {
+            "HP1": [3650, 5220],
+            "fusionmax": 263,
+            "stat1": "cRate",
+            "data1": [258, 369],
+            "stat2": ["ACC", "DEF", "BLK"],
+            "data2": [125, 157]
+        },
+        "slot3": {
+            "HP1": [6510, 9310],
+            "fusionmax": 275,
+            "stat1": "HP1",
+            "data1": [6510, 9310],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [132, 165]
+        },
+        "slot4": {
+            "HP1": [3990, 5700],
+            "fusionmax": 287,
+            "stat1": "ACC",
+            "data1": [280, 401],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [137, 172]
+        },
+        "slot5": {
+            "HP1": [7360, 10520],
+            "fusionmax": 311,
+            "stat1": "HP1",
+            "data1": [7360, 10520],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [148, 186]
+        },
+        "slot6": {
+            "HP1": [4480, 6410],
+            "fusionmax": 323,
+            "stat1": "DEF",
+            "data1": [280, 401],
+            "stat2": ["cRate", "EVA", "BLK"],
+            "data2": [154, 193]
+        },
+        "slot7": {
+            "HP1": [7930, 11330],
+            "fusionmax": 335,
+            "stat1": "HP1",
+            "data1": [7930, 11330],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [160, 200]
+        },
+        "slot8": {
+            "HP1": [4820, 6880],
+            "fusionmax": 347,
+            "stat1": "cRate",
+            "data1": [339, 485],
+            "stat2": ["ACC", "DEF", "EVA"],
+            "data2": [166, 208]
+        }
+    }
+}

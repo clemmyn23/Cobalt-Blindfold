@@ -1,0 +1,79 @@
+{
+    "aman": {
+        "tags": ["ns", "sanctum", "xanos"],
+        "setName": "Naryu Sanctum",
+        "setNotes": "Aman/Xanos - Sapphire Basin. All shields have DEF/EVA/BLK as secondary.",
+        "rarity": "purple",
+        "setBonus": {
+            "3": {
+                "AP": 7,
+                "cDmg": 7,
+                "PEN":423
+            }
+        },
+        "slot1": {
+            "HP1": [3260, 4660],
+            "fusionmax": 186,
+            "stat1": "cRate",
+            "data1": [221, 316],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [44, 55]
+        },
+        "slot2": {
+            "HP1": [3420, 4880],
+            "fusionmax": 195,
+            "stat1": "cRate",
+            "data1": [231, 331],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [46, 58]
+        },
+        "slot3": {
+            "HP1": [3570, 5100],
+            "fusionmax": 203,
+            "stat1": "cRate",
+            "data1": [241, 345],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [48, 61]
+        },
+        "slot4": {
+            "HP1": [3730, 5330],
+            "fusionmax": 212,
+            "stat1": "cRate",
+            "data1": [252, 361],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [50, 63]
+        },
+        "slot5": {
+            "HP1": [4040, 5770],
+            "fusionmax": 230,
+            "stat1": "cRate",
+            "data1": [273, 391],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [54, 68]
+        },
+        "slot6": {
+            "HP1": [4190, 5990],
+            "fusionmax": 239,
+            "stat1": "cRate",
+            "data1": [284, 406],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [56, 71]
+        },
+        "slot7": {
+            "HP1": [4350, 6210],
+            "fusionmax": 248,
+            "stat1": "cRate",
+            "data1": [294, 421],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [59, 74]
+        },
+        "slot8": {
+            "HP1": [4500, 6440],
+            "fusionmax": 256,
+            "stat1": "cRate",
+            "data1": [305, 436],
+            "stat2": ["DEF", "EVA", "BLK"],
+            "data2": [60, 76]
+        }
+    }
+}
