@@ -1,8 +1,9 @@
 {
-    "mugan": {
-        "tags": ["foundary"],
+    "acrimor": {
+        "tags": ["foundary", "nf", "mugan"],
         "setName": "Naryu Foundary",
-        "setNotes": "Khanda Vihar. Need driver, true scorpio weapon minimum.",
+        "setNotes": "Acrimor at Hellforge. Khanda Vihar.",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/raw/equipgem_hellforge_pos1.png",
         "rarity": "purple",
         "setBonus": {
             "3": {
