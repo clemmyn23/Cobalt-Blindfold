@@ -3,6 +3,7 @@
         "tags": ["ns", "sanctum", "xanos"],
         "setName": "Naryu Sanctum",
         "setNotes": "Aman/Xanos - Sapphire Basin. All shields have DEF/EVA/BLK as secondary.",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/raw/equipgem_holyland_pos1.png",
         "rarity": "purple",
         "setBonus": {
             "3": {
