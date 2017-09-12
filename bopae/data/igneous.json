@@ -1,8 +1,9 @@
 {
     "igneous": {
-        "tags": ["af", "automaton"],
-        "setName": "Automaton Foundry",
-        "setNotes": "Igneous - Sapphire Basin",
+        "tags": ["if", "automaton"],
+        "setName": "Mechanizer Soul Shield",
+        "setNotes": "Irontech Forge / Automaton Foundry (igneous)",
+        "imageUrl": "http://static.ncsoft.com/bns_resource/ui_resource/raw/equipgem_factory_pos1.png",
         "rarity": "purple",
         "setBonus": {
             "3": {
